@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mask Goggle — Tidepop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { "electric-mint":"#00E0C6","punchy-coral":"#FF7A5C","vivid-lavender":"#7C5CFF","primary":"#006b5e","on-primary-container":"#005e52","surface-low":"#f5f2ff","on-surface":"#1a1a2e","on-surface-variant":"#3b4a46","outline-variant":"#bacac5","ice-white":"#F9FCFB" },
+        borderRadius: { "32":"32px" },
+        fontFamily: { headline:["'Nunito Sans'","sans-serif"], body:["'Hanken Grotesk'","sans-serif"] }
+      }}
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; display:inline-block; vertical-align:middle; }
+    .fill { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
+    .glass-header { backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    body { font-family:'Hanken Grotesk',sans-serif; background-color:#F9FCFB; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-track { animation:marquee 28s linear infinite; width:max-content; }
+  </style>
+</head>
+<body class="text-on-surface overflow-x-hidden">
+
+<!-- Nav -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-4 mx-4 lg:mx-auto max-w-[1280px] bg-white/70 glass-header border border-white/20 shadow-[0_32px_64px_rgba(0,224,198,0.08)]">
+  <a href="index.html"><img alt="Tidepop" class="h-20 w-auto object-contain rounded-2xl" src="images/brand/tidepop_logo.png"/></a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-primary font-bold border-b-2 border-electric-mint pb-1" href="shop.html">Shop</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Kids</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Performance</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="about.html">Our Story</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <a href="cart.html" class="relative p-2 text-on-surface-variant hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-punchy-coral text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </a>
+  </div>
+</header>
+
+<main class="mt-32 pb-[120px]">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 pt-8 pb-4">
+    <p class="text-sm text-on-surface-variant">
+      <a href="index.html" class="hover:text-primary transition-colors">Home</a><span class="mx-2">›</span>
+      <a href="shop.html" class="hover:text-primary transition-colors">Shop</a><span class="mx-2">›</span>
+      <span class="text-on-surface font-medium">Mask Goggle</span>
+    </p>
+  </div>
+
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+      <!-- Gallery -->
+      <div class="sticky top-32">
+        <div class="bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.06)] mb-4 aspect-square flex items-center justify-center overflow-hidden">
+          <img id="main-image" src="images/products/mask_teal.jpeg" alt="Mask Goggle" class="w-full h-full object-contain transition-opacity duration-300"/>
+        </div>
+        <div class="flex gap-3 overflow-x-auto pb-2">
+          <button onclick="selectColour(0)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-primary overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/mask_teal.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(1)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/mask_Bluerim.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(2)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/mask_pink.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(3)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/mask_black.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(4)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/mask_burntorange.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(5)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/mask_Yellow.jpeg" class="w-full h-full object-contain p-2"/></button>
+        </div>
+      </div>
+
+      <!-- Purchase Options -->
+      <div>
+        <span class="inline-block px-3 py-1 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-widest uppercase mb-4">Wide Vision</span>
+        <h1 class="font-headline font-extrabold text-[36px] md:text-[44px] leading-[1.1] tracking-[-0.02em] text-on-surface mb-3">Tidepop Mask Goggle</h1>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="flex text-punchy-coral">
+            <span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span>
+          </div>
+          <span class="font-bold text-on-surface">4.8</span>
+          <span class="text-on-surface-variant text-sm">· 248 reviews</span>
+        </div>
+        <p class="text-[32px] font-headline font-extrabold text-primary mb-6">$29.99</p>
+
+        <div class="mb-6">
+          <p class="text-sm font-bold text-on-surface mb-3">Colour: <span id="selected-colour" class="text-primary">Mint Green</span></p>
+          <div class="flex gap-3 flex-wrap">
+            <button onclick="selectColour(0)" class="colour-swatch w-9 h-9 rounded-full transition-all hover:scale-110" style="background:#5ECFB1;outline:3px solid #006b5e;outline-offset:3px" title="Mint Green"></button>
+            <button onclick="selectColour(1)" class="colour-swatch w-9 h-9 rounded-full transition-all hover:scale-110" style="background:#7BB8D4" title="Baby Blue"></button>
+            <button onclick="selectColour(2)" class="colour-swatch w-9 h-9 rounded-full transition-all hover:scale-110" style="background:#F4A7B9" title="Baby Pink"></button>
+            <button onclick="selectColour(3)" class="colour-swatch w-9 h-9 rounded-full transition-all hover:scale-110 border border-outline-variant/30" style="background:#1a1a2e" title="Black"></button>
+            <button onclick="selectColour(4)" class="colour-swatch w-9 h-9 rounded-full transition-all hover:scale-110" style="background:#F07A5A" title="Coral Pink"></button>
+            <button onclick="selectColour(5)" class="colour-swatch w-9 h-9 rounded-full transition-all hover:scale-110" style="background:#F5C842" title="Yellow"></button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">UV Protection</span>
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">Anti-Fog Lens</span>
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">Leak-Free Seal</span>
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">Panoramic View</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-6">
+          <p class="text-sm font-bold text-on-surface">Qty</p>
+          <div class="flex items-center border border-outline-variant/30 rounded-full overflow-hidden">
+            <button onclick="changeQty(-1)" class="px-4 py-3 text-on-surface hover:bg-surface-low transition-colors font-bold text-lg leading-none">−</button>
+            <span id="qty-display" class="px-4 font-bold text-on-surface min-w-[2rem] text-center">1</span>
+            <button onclick="changeQty(1)" class="px-4 py-3 text-on-surface hover:bg-surface-low transition-colors font-bold text-lg leading-none">+</button>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mb-6">
+          <button id="main-atc" onclick="handleAddToCart()" class="flex-1 py-5 bg-electric-mint text-on-primary-container font-bold rounded-full text-lg shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-[1.02] transition-transform">Add to Cart</button>
+          <button class="w-14 h-14 rounded-full border-2 border-outline-variant/30 flex items-center justify-center hover:border-punchy-coral hover:text-punchy-coral transition-all" title="Wishlist"><span class="material-symbols-outlined">favorite</span></button>
+        </div>
+
+        <div class="flex flex-wrap gap-6 py-6 border-t border-outline-variant/20">
+          <div class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">local_shipping</span>Free Shipping over $50</div>
+          <div class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">keyboard_return</span>30-Day Returns</div>
+          <div class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">lock</span>Secure Checkout</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mt-16">
+    <div class="bg-white rounded-32 shadow-[0_32px_64px_rgba(0,224,198,0.06)] overflow-hidden">
+      <div class="flex border-b border-outline-variant/20">
+        <button id="btn-details" onclick="showTab('details')" class="tab-btn px-8 py-5 font-bold text-sm text-primary transition-all" style="border-bottom:2px solid #006b5e">Details</button>
+        <button id="btn-specs" onclick="showTab('specs')" class="tab-btn px-8 py-5 font-bold text-sm text-on-surface-variant hover:text-primary transition-all">Specifications</button>
+        <button id="btn-reviews" onclick="showTab('reviews')" class="tab-btn px-8 py-5 font-bold text-sm text-on-surface-variant hover:text-primary transition-all">Reviews</button>
+      </div>
+      <div class="p-8 md:p-12">
+        <div id="tab-details" class="tab-panel">
+          <h3 class="font-headline font-bold text-xl mb-4">About the Mask Goggle</h3>
+          <p class="text-on-surface-variant leading-relaxed mb-6">The Tidepop Mask Goggle delivers an unrivalled panoramic field of vision. The wide-frame design wraps around the eyes, removing the tunnel-vision effect of traditional goggles and giving swimmers a clear, open view of the underwater world.</p>
+          <p class="text-on-surface-variant leading-relaxed mb-6">Perfect for ocean swims, snorkelling, open water events, and recreational swimming. The soft silicone seal conforms to the face without leaving pressure marks, and the single-adjustment strap stays put through the longest sessions.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Panoramic wide-angle lens</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Anti-fog UV400 protection</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">No pressure marks silicone seal</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Single-adjustment strap</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Ideal for pool and open water</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Includes hard carry case</p></div>
+          </div>
+        </div>
+        <div id="tab-specs" class="tab-panel hidden">
+          <h3 class="font-headline font-bold text-xl mb-6">Specifications</h3>
+          <table class="w-full text-sm">
+            <tbody class="divide-y divide-outline-variant/20">
+              <tr><td class="py-3 font-bold text-on-surface w-1/3">Age Range</td><td class="py-3 text-on-surface-variant">5 years and up</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Lens Type</td><td class="py-3 text-on-surface-variant">Panoramic anti-fog, UV400 polycarbonate</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Seal Material</td><td class="py-3 text-on-surface-variant">Medical-grade silicone</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Strap</td><td class="py-3 text-on-surface-variant">Single-adjustment</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Frame</td><td class="py-3 text-on-surface-variant">ABS plastic</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Weight</td><td class="py-3 text-on-surface-variant">52g</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Available Colours</td><td class="py-3 text-on-surface-variant">6 — Mint Green, Baby Blue, Baby Pink, Black, Coral Pink, Yellow</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">In the Box</td><td class="py-3 text-on-surface-variant">Goggle, hard carry case</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="tab-reviews" class="tab-panel hidden">
+          <div class="flex items-center gap-4 mb-8">
+            <div><p class="font-headline font-extrabold text-[48px] leading-none text-on-surface">4.8</p>
+            <div class="flex text-punchy-coral mt-1"><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span></div></div>
+            <p class="text-on-surface-variant text-sm">Based on 248 reviews</p>
+          </div>
+          <div class="border-b border-outline-variant/20 pb-6">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-full bg-punchy-coral/20 flex items-center justify-center"><span class="font-bold text-punchy-coral text-xs">LR</span></div>
+              <div><p class="font-bold text-sm">Linda R.</p><p class="text-xs text-on-surface-variant">Verified Customer</p></div>
+              <div class="flex text-punchy-coral ml-auto"><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span></div>
+            </div>
+            <p class="font-bold text-on-surface mb-1">"She won't take them off."</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The colours are incredible! My daughter loves her Mask set and she looks so confident in the water now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1a1a2e] py-5 overflow-hidden mt-[120px]">
+    <div class="marquee-track flex items-center gap-0">
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Anti-Fog Lenses</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Leak-Proof Seal</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">100% UV Protection</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Free Shipping Over $50</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">30-Day Returns</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Made for the Water</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Anti-Fog Lenses</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Leak-Proof Seal</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">100% UV Protection</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Free Shipping Over $50</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">30-Day Returns</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Made for the Water</span><span class="text-electric-mint">✦</span>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-outline-variant/30 bg-ice-white">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="flex flex-col gap-6"><img alt="Tidepop" class="h-8 w-auto object-contain self-start mb-2" src="images/brand/tidepop_logo.png"/><p class="text-on-surface-variant">Dive into clarity.</p></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Shop</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">All Products</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Support</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Company</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Our Story</a><p class="text-on-surface-variant text-sm mt-4">© 2025 Tidepop.</p></div>
+  </div>
+</footer>
+
+<div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-outline-variant/20 px-6 py-4 flex items-center justify-between shadow-[0_-8px_32px_rgba(0,0,0,0.08)] translate-y-full" style="transition:transform 0.3s ease">
+  <div><p class="font-headline font-bold text-on-surface">Mask Goggle — <span id="sticky-colour">Mint Green</span></p><p class="text-primary font-bold">$29.99</p></div>
+  <button onclick="handleAddToCart()" class="px-8 py-3 bg-electric-mint text-on-primary-container font-bold rounded-full hover:scale-105 transition-transform">Add to Cart</button>
+</div>
+
+<script src="js/cart.js"></script>
+<script>
+  const PRODUCT = {
+    name:'Tidepop Mask Goggle', price:29.99,
+    colours:[
+      {id:6, name:'Mint Green',  image:'images/products/mask_teal.jpeg'},
+      {id:7, name:'Baby Blue',   image:'images/products/mask_Bluerim.jpeg'},
+      {id:8, name:'Baby Pink',   image:'images/products/mask_pink.jpeg'},
+      {id:9, name:'Black',       image:'images/products/mask_black.jpeg'},
+      {id:10,name:'Coral Pink',  image:'images/products/mask_burntorange.jpeg'},
+      {id:11,name:'Yellow',      image:'images/products/mask_Yellow.jpeg'},
+    ]
+  };
+  let selectedColour = PRODUCT.colours[0], qty = 1;
+
+  function selectColour(i) {
+    selectedColour = PRODUCT.colours[i];
+    const img = document.getElementById('main-image');
+    img.style.opacity='0'; setTimeout(()=>{ img.src=selectedColour.image; img.style.opacity='1'; },200);
+    document.getElementById('selected-colour').textContent = selectedColour.name;
+    document.getElementById('sticky-colour').textContent = selectedColour.name;
+    document.querySelectorAll('.colour-swatch').forEach((el,idx)=>{ el.style.outline=idx===i?'3px solid #006b5e':'none'; el.style.outlineOffset='3px'; });
+    document.querySelectorAll('.thumb').forEach((el,idx)=>{ el.style.borderColor=idx===i?'#006b5e':'transparent'; });
+  }
+
+  function changeQty(d){ qty=Math.max(1,qty+d); document.getElementById('qty-display').textContent=qty; }
+  function handleAddToCart(){ addToCart({id:selectedColour.id,name:PRODUCT.name,variation:selectedColour.name,price:PRODUCT.price,image:selectedColour.image,qty}); }
+  function showTab(tab){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.add('hidden'));
+    document.getElementById(`tab-${tab}`).classList.remove('hidden');
+    document.querySelectorAll('.tab-btn').forEach(b=>{ const a=b.id===`btn-${tab}`; b.style.borderBottom=a?'2px solid #006b5e':'none'; b.style.color=a?'#006b5e':'#3b4a46'; });
+  }
+  const obs=new IntersectionObserver(([e])=>{ document.getElementById('sticky-bar').style.transform=e.isIntersecting?'translateY(100%)':'translateY(0)'; },{threshold:0});
+  obs.observe(document.getElementById('main-atc'));
+</script>
+</body>
+</html>

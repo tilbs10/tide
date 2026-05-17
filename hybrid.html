@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hybrid Goggle — Tidepop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { "electric-mint":"#00E0C6","punchy-coral":"#FF7A5C","vivid-lavender":"#7C5CFF","primary":"#006b5e","on-primary-container":"#005e52","surface-low":"#f5f2ff","on-surface":"#1a1a2e","on-surface-variant":"#3b4a46","outline-variant":"#bacac5","ice-white":"#F9FCFB" },
+        borderRadius: { "32":"32px" },
+        fontFamily: { headline:["'Nunito Sans'","sans-serif"], body:["'Hanken Grotesk'","sans-serif"] }
+      }}
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; display:inline-block; vertical-align:middle; }
+    .fill { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
+    .glass-header { backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    body { font-family:'Hanken Grotesk',sans-serif; background-color:#F9FCFB; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-track { animation:marquee 28s linear infinite; width:max-content; }
+    #sticky-bar { transition: transform 0.3s ease; }
+  </style>
+</head>
+<body class="text-on-surface overflow-x-hidden">
+
+<!-- Nav -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-4 mx-4 lg:mx-auto max-w-[1280px] bg-white/70 glass-header border border-white/20 shadow-[0_32px_64px_rgba(0,224,198,0.08)]">
+  <a href="index.html"><img alt="Tidepop" class="h-20 w-auto object-contain rounded-2xl" src="images/brand/tidepop_logo.png"/></a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-primary font-bold border-b-2 border-electric-mint pb-1" href="shop.html">Shop</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Kids</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Performance</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="about.html">Our Story</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <a href="cart.html" class="relative p-2 text-on-surface-variant hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-punchy-coral text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </a>
+  </div>
+</header>
+
+<main class="mt-32 pb-[120px]">
+
+  <!-- Breadcrumb -->
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 pt-8 pb-4">
+    <p class="text-sm text-on-surface-variant">
+      <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <a href="shop.html" class="hover:text-primary transition-colors">Shop</a>
+      <span class="mx-2">›</span>
+      <span class="text-on-surface font-medium">Hybrid Goggle</span>
+    </p>
+  </div>
+
+  <!-- Product Layout -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+      <!-- Gallery -->
+      <div class="sticky top-32">
+        <div class="bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.06)] mb-4 aspect-square flex items-center justify-center overflow-hidden">
+          <img id="main-image" src="images/products/hybrid_DB.jpeg" alt="Hybrid Goggle" class="w-full h-full object-contain transition-opacity duration-300"/>
+        </div>
+        <div class="flex gap-3 overflow-x-auto pb-2">
+          <button onclick="selectColour(0)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-primary overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/hybrid_DB.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(1)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/hybrid_LB.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(2)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/hybrid_lime.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(3)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/hybrid_all.jpeg" class="w-full h-full object-contain p-2"/></button>
+          <button onclick="selectColour(4)" class="thumb flex-shrink-0 w-20 h-20 rounded-2xl bg-white border-2 border-transparent overflow-hidden shadow-sm hover:scale-105 transition-transform"><img src="images/products/hybrid_Purple.jpeg" class="w-full h-full object-contain p-2"/></button>
+        </div>
+      </div>
+
+      <!-- Purchase Options -->
+      <div>
+        <span class="inline-block px-3 py-1 rounded-full bg-punchy-coral/10 text-punchy-coral text-xs font-bold tracking-widest uppercase mb-4">Best Seller</span>
+        <h1 class="font-headline font-extrabold text-[36px] md:text-[44px] leading-[1.1] tracking-[-0.02em] text-on-surface mb-3">Tidepop Hybrid Goggle</h1>
+
+        <!-- Rating -->
+        <div class="flex items-center gap-3 mb-5">
+          <div class="flex text-punchy-coral">
+            <span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span><span class="material-symbols-outlined fill text-lg">star</span>
+          </div>
+          <span class="font-bold text-on-surface">4.8</span>
+          <span class="text-on-surface-variant text-sm">· 312 reviews</span>
+        </div>
+
+        <p class="text-[32px] font-headline font-extrabold text-primary mb-6">$34.99</p>
+
+        <!-- Colour Selector -->
+        <div class="mb-6">
+          <p class="text-sm font-bold text-on-surface mb-3">Colour: <span id="selected-colour" class="text-primary">Dark Blue</span></p>
+          <div class="flex gap-3">
+            <button onclick="selectColour(0)" class="colour-swatch w-9 h-9 rounded-full ring-2 ring-offset-2 ring-primary transition-all hover:scale-110" style="background:#1B4F8A" title="Dark Blue"></button>
+            <button onclick="selectColour(1)" class="colour-swatch w-9 h-9 rounded-full ring-0 transition-all hover:scale-110" style="background:#87BCDE" title="Light Blue"></button>
+            <button onclick="selectColour(2)" class="colour-swatch w-9 h-9 rounded-full ring-0 transition-all hover:scale-110" style="background:#7BC843" title="Lime Green"></button>
+            <button onclick="selectColour(3)" class="colour-swatch w-9 h-9 rounded-full ring-0 transition-all hover:scale-110" style="background:#F74F7B" title="Hot Pink"></button>
+            <button onclick="selectColour(4)" class="colour-swatch w-9 h-9 rounded-full ring-0 transition-all hover:scale-110" style="background:#8B5CF6" title="Purple"></button>
+          </div>
+        </div>
+
+        <!-- Feature Chips -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">UV Protection</span>
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">Anti-Fog Lens</span>
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">Leak-Free Seal</span>
+          <span class="px-4 py-2 rounded-full bg-electric-mint/10 text-primary text-xs font-bold tracking-wide border border-electric-mint/20">Quick Release</span>
+        </div>
+
+        <!-- Qty Stepper -->
+        <div class="flex items-center gap-4 mb-6">
+          <p class="text-sm font-bold text-on-surface">Qty</p>
+          <div class="flex items-center border border-outline-variant/30 rounded-full overflow-hidden">
+            <button onclick="changeQty(-1)" class="px-4 py-3 text-on-surface hover:bg-surface-low transition-colors font-bold text-lg leading-none">−</button>
+            <span id="qty-display" class="px-4 font-bold text-on-surface min-w-[2rem] text-center">1</span>
+            <button onclick="changeQty(1)" class="px-4 py-3 text-on-surface hover:bg-surface-low transition-colors font-bold text-lg leading-none">+</button>
+          </div>
+        </div>
+
+        <!-- ATC + Wishlist -->
+        <div class="flex gap-3 mb-6">
+          <button id="main-atc" onclick="handleAddToCart()" class="flex-1 py-5 bg-electric-mint text-on-primary-container font-bold rounded-full text-lg shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-[1.02] transition-transform">Add to Cart</button>
+          <button class="w-14 h-14 rounded-full border-2 border-outline-variant/30 flex items-center justify-center hover:border-punchy-coral hover:text-punchy-coral transition-all" title="Wishlist">
+            <span class="material-symbols-outlined">favorite</span>
+          </button>
+        </div>
+
+        <!-- Guarantee Strip -->
+        <div class="flex flex-wrap gap-6 py-6 border-t border-outline-variant/20">
+          <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-primary text-xl">local_shipping</span>Free Shipping over $50
+          </div>
+          <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-primary text-xl">keyboard_return</span>30-Day Returns
+          </div>
+          <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-primary text-xl">lock</span>Secure Checkout
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mt-16">
+    <div class="bg-white rounded-32 shadow-[0_32px_64px_rgba(0,224,198,0.06)] overflow-hidden">
+      <div class="flex border-b border-outline-variant/20">
+        <button id="btn-details" onclick="showTab('details')" class="tab-btn px-8 py-5 font-bold text-sm text-primary border-b-2 border-primary transition-all">Details</button>
+        <button id="btn-specs" onclick="showTab('specs')" class="tab-btn px-8 py-5 font-bold text-sm text-on-surface-variant hover:text-primary transition-all">Specifications</button>
+        <button id="btn-reviews" onclick="showTab('reviews')" class="tab-btn px-8 py-5 font-bold text-sm text-on-surface-variant hover:text-primary transition-all">Reviews</button>
+      </div>
+      <div class="p-8 md:p-12">
+        <div id="tab-details" class="tab-panel">
+          <h3 class="font-headline font-bold text-xl mb-4">About the Hybrid Goggle</h3>
+          <p class="text-on-surface-variant leading-relaxed mb-6">The Tidepop Hybrid Goggle is our flagship model — designed for swimmers who want the best of both worlds. A flexible silicone frame delivers a leak-free seal, while the anti-fog UV400 lenses give crisp, clear vision from the first lap to the last.</p>
+          <p class="text-on-surface-variant leading-relaxed mb-6">The dual-adjustment quick-release strap fits a wide range of head sizes, and three interchangeable nose bridge sizes ensure a custom-level fit out of the box. Suitable for pool and open water.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Anti-fog coating for lasting clarity</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">UV400 lens protection</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Medical-grade silicone seal</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">3 interchangeable nose bridges included</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Dual-adjustment quick-release strap</p></div>
+            <div class="flex gap-3 items-start"><span class="material-symbols-outlined text-electric-mint mt-0.5">check_circle</span><p class="text-sm text-on-surface-variant">Includes mesh carry bag</p></div>
+          </div>
+        </div>
+        <div id="tab-specs" class="tab-panel hidden">
+          <h3 class="font-headline font-bold text-xl mb-6">Specifications</h3>
+          <table class="w-full text-sm">
+            <tbody class="divide-y divide-outline-variant/20">
+              <tr class="py-3"><td class="py-3 font-bold text-on-surface w-1/3">Age Range</td><td class="py-3 text-on-surface-variant">6 years and up</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Lens Type</td><td class="py-3 text-on-surface-variant">Anti-fog, UV400 polycarbonate</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Seal Material</td><td class="py-3 text-on-surface-variant">Medical-grade silicone</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Strap</td><td class="py-3 text-on-surface-variant">Dual-adjustment quick-release</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Frame</td><td class="py-3 text-on-surface-variant">Polycarbonate</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Weight</td><td class="py-3 text-on-surface-variant">45g</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">Available Colours</td><td class="py-3 text-on-surface-variant">5 — Dark Blue, Light Blue, Lime Green, Hot Pink, Purple</td></tr>
+              <tr><td class="py-3 font-bold text-on-surface">In the Box</td><td class="py-3 text-on-surface-variant">Goggle, mesh carry bag, 3 nose bridge sizes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="tab-reviews" class="tab-panel hidden">
+          <div class="flex items-center gap-4 mb-8">
+            <div>
+              <p class="font-headline font-extrabold text-[48px] leading-none text-on-surface">4.8</p>
+              <div class="flex text-punchy-coral mt-1">
+                <span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span>
+              </div>
+            </div>
+            <p class="text-on-surface-variant text-sm">Based on 312 reviews</p>
+          </div>
+          <div class="flex flex-col gap-6">
+            <div class="border-b border-outline-variant/20 pb-6">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-9 h-9 rounded-full bg-electric-mint/20 flex items-center justify-center"><span class="font-bold text-primary text-xs">SJ</span></div>
+                <div><p class="font-bold text-sm text-on-surface">Sarah J.</p><p class="text-xs text-on-surface-variant">Mum of 3 · Verified Purchase</p></div>
+                <div class="flex text-punchy-coral ml-auto"><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span></div>
+              </div>
+              <p class="font-bold text-on-surface mb-1">"No more fighting at the pool."</p>
+              <p class="text-on-surface-variant text-sm leading-relaxed">Finally, goggles my kids actually want to wear. No leaks all afternoon and zero complaints about them being too tight.</p>
+            </div>
+            <div class="border-b border-outline-variant/20 pb-6">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-9 h-9 rounded-full bg-vivid-lavender/20 flex items-center justify-center"><span class="font-bold text-vivid-lavender text-xs">MT</span></div>
+                <div><p class="font-bold text-sm text-on-surface">Marcus T.</p><p class="text-xs text-on-surface-variant">Swim Coach · Verified Purchase</p></div>
+                <div class="flex text-punchy-coral ml-auto"><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span><span class="material-symbols-outlined fill text-sm">star</span></div>
+              </div>
+              <p class="font-bold text-on-surface mb-1">"Best value on the market."</p>
+              <p class="text-on-surface-variant text-sm leading-relaxed">As a swim coach I've tried everything. The Tidepop Hybrid is the goggle I recommend to every parent.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="bg-[#1a1a2e] py-5 overflow-hidden mt-[120px]">
+    <div class="marquee-track flex items-center gap-0">
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Anti-Fog Lenses</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Leak-Proof Seal</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">100% UV Protection</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Free Shipping Over $50</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">30-Day Returns</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Made for the Water</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Anti-Fog Lenses</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Leak-Proof Seal</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">100% UV Protection</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Free Shipping Over $50</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">30-Day Returns</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Made for the Water</span><span class="text-electric-mint">✦</span>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-outline-variant/30 bg-ice-white">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="flex flex-col gap-6">
+      <img alt="Tidepop" class="h-8 w-auto object-contain self-start mb-2" src="images/brand/tidepop_logo.png"/>
+      <p class="text-on-surface-variant">Dive into clarity with goggles that feel like they aren't even there.</p>
+    </div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Shop</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">All Products</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Support</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Company</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Our Story</a><p class="text-on-surface-variant text-sm mt-4">© 2025 Tidepop.</p></div>
+  </div>
+</footer>
+
+<!-- Sticky Add to Cart Bar -->
+<div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-outline-variant/20 px-6 py-4 flex items-center justify-between shadow-[0_-8px_32px_rgba(0,0,0,0.08)] translate-y-full">
+  <div>
+    <p class="font-headline font-bold text-on-surface">Hybrid Goggle — <span id="sticky-colour">Dark Blue</span></p>
+    <p class="text-primary font-bold">$34.99</p>
+  </div>
+  <button onclick="handleAddToCart()" class="px-8 py-3 bg-electric-mint text-on-primary-container font-bold rounded-full hover:scale-105 transition-transform">Add to Cart</button>
+</div>
+
+<script src="js/cart.js"></script>
+<script>
+  const PRODUCT = {
+    name: 'Tidepop Hybrid Goggle', price: 34.99,
+    colours: [
+      { id:1, name:'Dark Blue',  hex:'#1B4F8A', image:'images/products/hybrid_DB.jpeg' },
+      { id:2, name:'Light Blue', hex:'#87BCDE', image:'images/products/hybrid_LB.jpeg' },
+      { id:3, name:'Lime Green', hex:'#7BC843', image:'images/products/hybrid_lime.jpeg' },
+      { id:4, name:'Hot Pink',   hex:'#F74F7B', image:'images/products/hybrid_all.jpeg' },
+      { id:5, name:'Purple',     hex:'#8B5CF6', image:'images/products/hybrid_Purple.jpeg' },
+    ]
+  };
+  let selectedColour = PRODUCT.colours[0], qty = 1;
+
+  function selectColour(i) {
+    selectedColour = PRODUCT.colours[i];
+    document.getElementById('main-image').style.opacity = '0';
+    setTimeout(() => { document.getElementById('main-image').src = selectedColour.image; document.getElementById('main-image').style.opacity = '1'; }, 200);
+    document.getElementById('selected-colour').textContent = selectedColour.name;
+    document.getElementById('sticky-colour').textContent = selectedColour.name;
+    document.querySelectorAll('.colour-swatch').forEach((el, idx) => {
+      el.style.outline = idx === i ? '3px solid #006b5e' : 'none';
+      el.style.outlineOffset = '3px';
+    });
+    document.querySelectorAll('.thumb').forEach((el, idx) => {
+      el.style.borderColor = idx === i ? '#006b5e' : 'transparent';
+    });
+  }
+
+  function changeQty(delta) { qty = Math.max(1, qty + delta); document.getElementById('qty-display').textContent = qty; }
+
+  function handleAddToCart() {
+    addToCart({ id: selectedColour.id, name: PRODUCT.name, variation: selectedColour.variation || selectedColour.name, price: PRODUCT.price, image: selectedColour.image, qty });
+  }
+
+  function showTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById(`tab-${tab}`).classList.remove('hidden');
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      const isActive = b.id === `btn-${tab}`;
+      b.style.borderBottom = isActive ? '2px solid #006b5e' : 'none';
+      b.style.color = isActive ? '#006b5e' : '#3b4a46';
+    });
+  }
+
+  // Sticky bar
+  const mainAtc = document.getElementById('main-atc');
+  const stickyBar = document.getElementById('sticky-bar');
+  const obs = new IntersectionObserver(([e]) => {
+    stickyBar.style.transform = e.isIntersecting ? 'translateY(100%)' : 'translateY(0)';
+  }, { threshold: 0 });
+  obs.observe(mainAtc);
+</script>
+</body>
+</html>

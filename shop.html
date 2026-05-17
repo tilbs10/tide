@@ -1,36 +1,206 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shop — Tidepop</title>
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { "electric-mint":"#00E0C6","punchy-coral":"#FF7A5C","vivid-lavender":"#7C5CFF","primary":"#006b5e","on-primary-container":"#005e52","surface-low":"#f5f2ff","on-surface":"#1a1a2e","on-surface-variant":"#3b4a46","outline-variant":"#bacac5","ice-white":"#F9FCFB" },
+        borderRadius: { "32":"32px" },
+        fontFamily: { headline:["'Nunito Sans'","sans-serif"], body:["'Hanken Grotesk'","sans-serif"] }
+      }}
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; display:inline-block; vertical-align:middle; }
+    .fill { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
+    .glass-header { backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    body { font-family:'Hanken Grotesk',sans-serif; background-color:#F9FCFB; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-track { animation:marquee 28s linear infinite; width:max-content; }
+    .swatch-ring { outline: 3px solid #006b5e; outline-offset: 2px; }
+    .product-img { transition: opacity 0.35s ease; }
+  </style>
 </head>
-<body>
+<body class="text-on-surface overflow-x-hidden">
 
-  <header>
-    <a href="index.html"><img src="images/brand/tidepop_logo.png" alt="Tidepop" class="logo" /></a>
-    <nav>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-    </nav>
-  </header>
+<!-- Nav -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-4 mx-4 lg:mx-auto max-w-[1280px] bg-white/70 glass-header border border-white/20 shadow-[0_32px_64px_rgba(0,224,198,0.08)]">
+  <a href="index.html"><img alt="Tidepop" class="h-20 w-auto object-contain rounded-2xl" src="images/brand/tidepop_logo.png"/></a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-primary font-bold border-b-2 border-electric-mint pb-1" href="shop.html">Shop</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Kids</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Performance</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="about.html">Our Story</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <a href="cart.html" class="relative p-2 text-on-surface-variant hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-punchy-coral text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </a>
+  </div>
+</header>
 
-  <main>
-    <h1>Shop</h1>
-    <div class="product-grid" id="all-products">
-      <!-- Products loaded from data/products.json via js/main.js -->
+<main class="mt-32 pb-[120px]">
+
+  <!-- Page Header -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 pt-12 pb-16">
+    <div class="bg-white rounded-32 p-10 md:p-16 shadow-[0_32px_64px_rgba(0,224,198,0.06)] relative overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-80 h-80 bg-electric-mint/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-4 py-1 rounded-full bg-[#ffdad2] text-[#3d0600] text-xs font-bold tracking-widest uppercase mb-6">The Range</span>
+        <h1 class="font-headline font-extrabold text-[36px] md:text-[56px] leading-[1.1] tracking-[-0.03em] text-on-surface mb-4">Find Your Perfect Pair</h1>
+        <p class="text-lg text-on-surface-variant max-w-xl">Three goggle families. Fifteen colours. One mission — get kids in the water.</p>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    <p>&copy; 2026 Tidepop. All rights reserved.</p>
-  </footer>
+  <!-- Filter Buttons -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-10">
+    <div class="flex gap-3 flex-wrap">
+      <button onclick="filterBy('all')" data-filter="all" class="filter-btn px-6 py-3 rounded-full font-bold text-sm bg-on-surface text-white transition-all">All</button>
+      <button onclick="filterBy('hybrid')" data-filter="hybrid" class="filter-btn px-6 py-3 rounded-full font-bold text-sm bg-white text-on-surface-variant border border-outline-variant/40 hover:border-electric-mint transition-all">Hybrid</button>
+      <button onclick="filterBy('mask')" data-filter="mask" class="filter-btn px-6 py-3 rounded-full font-bold text-sm bg-white text-on-surface-variant border border-outline-variant/40 hover:border-electric-mint transition-all">Mask</button>
+      <button onclick="filterBy('mini')" data-filter="mini" class="filter-btn px-6 py-3 rounded-full font-bold text-sm bg-white text-on-surface-variant border border-outline-variant/40 hover:border-electric-mint transition-all">Mini</button>
+    </div>
+  </section>
 
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Product Grid -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="product-grid">
+
+      <!-- Hybrid -->
+      <div data-family="hybrid" class="group bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.08)] hover:-translate-y-2 transition-all duration-300">
+        <div class="relative h-72 bg-surface-low rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+          <img id="hybrid-img" src="images/products/hybrid_DB.jpeg" alt="Hybrid Goggle" class="product-img w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"/>
+          <span class="absolute top-4 right-4 bg-punchy-coral text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">Best Seller</span>
+        </div>
+        <h2 class="font-headline font-extrabold text-2xl mb-1">Hybrid Goggle</h2>
+        <p class="text-on-surface-variant text-sm mb-4 leading-relaxed">Anti-fog, UV-protected, precision fit. The perfect balance of comfort and performance for daily swim sessions.</p>
+        <!-- Colour swatches -->
+        <div class="flex items-center gap-2 mb-2">
+          <button onclick="setShopColour('hybrid',0,'hybrid_DB')" class="swatch w-6 h-6 rounded-full swatch-ring transition-all" style="background:#1B4F8A" title="Dark Blue"></button>
+          <button onclick="setShopColour('hybrid',1,'hybrid_LB')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#87BCDE" title="Light Blue"></button>
+          <button onclick="setShopColour('hybrid',2,'hybrid_lime')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#7BC843" title="Lime Green"></button>
+          <button onclick="setShopColour('hybrid',3,'hybrid_all')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#F74F7B" title="Hot Pink"></button>
+          <button onclick="setShopColour('hybrid',4,'hybrid_Purple')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#8B5CF6" title="Purple"></button>
+          <span class="text-xs text-on-surface-variant ml-1">5 colours</span>
+        </div>
+        <p class="text-primary font-bold mb-5">From $34.99</p>
+        <a href="hybrid.html" class="block w-full py-4 rounded-full border-2 border-outline-variant/30 font-bold text-center hover:border-electric-mint hover:bg-electric-mint/5 transition-all">Shop Hybrid →</a>
+      </div>
+
+      <!-- Mask -->
+      <div data-family="mask" class="group bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.08)] hover:-translate-y-2 transition-all duration-300">
+        <div class="relative h-72 bg-surface-low rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+          <img id="mask-img" src="images/products/mask_teal.jpeg" alt="Mask Goggle" class="product-img w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"/>
+        </div>
+        <h2 class="font-headline font-extrabold text-2xl mb-1">Mask Goggle</h2>
+        <p class="text-on-surface-variant text-sm mb-4 leading-relaxed">Panoramic vision for explorers. Wide-angle clarity for ocean swims, snorkelling, and every aquatic adventure.</p>
+        <div class="flex items-center gap-2 mb-2">
+          <button onclick="setShopColour('mask',0,'mask_teal')" class="swatch w-6 h-6 rounded-full swatch-ring transition-all" style="background:#5ECFB1" title="Mint Green"></button>
+          <button onclick="setShopColour('mask',1,'mask_Bluerim')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#7BB8D4" title="Baby Blue"></button>
+          <button onclick="setShopColour('mask',2,'mask_pink')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#F4A7B9" title="Baby Pink"></button>
+          <button onclick="setShopColour('mask',3,'mask_black')" class="swatch w-6 h-6 rounded-full transition-all border border-outline-variant/30" style="background:#1a1a2e" title="Black"></button>
+          <button onclick="setShopColour('mask',4,'mask_burntorange')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#F07A5A" title="Coral Pink"></button>
+          <button onclick="setShopColour('mask',5,'mask_Yellow')" class="swatch w-6 h-6 rounded-full transition-all" style="background:#F5C842" title="Yellow"></button>
+          <span class="text-xs text-on-surface-variant ml-1">6 colours</span>
+        </div>
+        <p class="text-primary font-bold mb-5">From $29.99</p>
+        <a href="mask.html" class="block w-full py-4 rounded-full border-2 border-outline-variant/30 font-bold text-center hover:border-electric-mint hover:bg-electric-mint/5 transition-all">Shop Mask →</a>
+      </div>
+
+      <!-- Mini -->
+      <div data-family="mini" class="group bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.08)] hover:-translate-y-2 transition-all duration-300">
+        <div class="relative h-72 bg-surface-low rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+          <img id="mini-img" src="images/products/mini_goggle.jpeg" alt="Mini Goggle" class="product-img w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"/>
+          <span class="absolute top-4 right-4 bg-vivid-lavender text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">Ages 3–7</span>
+        </div>
+        <h2 class="font-headline font-extrabold text-2xl mb-1">Mini Goggle</h2>
+        <p class="text-on-surface-variant text-sm mb-4 leading-relaxed">Built for little faces from the ground up. Ultra-soft seal, easy strap, big confidence from lesson one.</p>
+        <div class="flex items-center gap-2 mb-2">
+          <button onclick="setShopColour('mini',0,'mini_goggle')" class="swatch w-6 h-6 rounded-full swatch-ring transition-all border border-white/20" style="background:linear-gradient(135deg,#F4A7B9 50%,#F5D647 50%)" title="Pink/Yellow"></button>
+          <button onclick="setShopColour('mini',1,'mini_goggle')" class="swatch w-6 h-6 rounded-full transition-all border border-white/20" style="background:linear-gradient(135deg,#F4A7B9 50%,#8B5CF6 50%)" title="Pink/Purple"></button>
+          <button onclick="setShopColour('mini',2,'mini_goggle')" class="swatch w-6 h-6 rounded-full transition-all border border-white/20" style="background:linear-gradient(135deg,#1a1a2e 50%,#22c55e 50%)" title="Black/Green"></button>
+          <button onclick="setShopColour('mini',3,'mini_goggle')" class="swatch w-6 h-6 rounded-full transition-all border border-white/20" style="background:linear-gradient(135deg,#3B82F6 50%,#F5D647 50%)" title="Blue/Yellow"></button>
+          <span class="text-xs text-on-surface-variant ml-1">4 colours</span>
+        </div>
+        <p class="text-primary font-bold mb-5">From $17.99</p>
+        <a href="mini.html" class="block w-full py-4 rounded-full border-2 border-outline-variant/30 font-bold text-center hover:border-electric-mint hover:bg-electric-mint/5 transition-all">Shop Mini →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="bg-[#1a1a2e] py-5 overflow-hidden mt-[120px]">
+    <div class="marquee-track flex items-center gap-0">
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Anti-Fog Lenses</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Leak-Proof Seal</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">100% UV Protection</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Free Shipping Over $50</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">30-Day Returns</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Made for the Water</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Anti-Fog Lenses</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Leak-Proof Seal</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">100% UV Protection</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Free Shipping Over $50</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">30-Day Returns</span><span class="text-electric-mint">✦</span>
+      <span class="text-white font-bold text-sm tracking-widest uppercase whitespace-nowrap px-8">Made for the Water</span><span class="text-electric-mint">✦</span>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-outline-variant/30 bg-ice-white">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="flex flex-col gap-6">
+      <img alt="Tidepop" class="h-8 w-auto object-contain self-start mb-2" src="images/brand/tidepop_logo.png"/>
+      <p class="text-on-surface-variant">Dive into clarity with goggles that feel like they aren't even there.</p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Shop</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">All Products</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Support</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Company</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Our Story</a>
+      <p class="text-on-surface-variant text-sm mt-4">© 2025 Tidepop. Dive into clarity.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script>
+  // Swatch colour switcher
+  const shopImgs = { hybrid: document.getElementById('hybrid-img'), mask: document.getElementById('mask-img'), mini: document.getElementById('mini-img') };
+  function setShopColour(family, idx, file) {
+    const card = document.querySelector(`[data-family="${family}"]`);
+    shopImgs[family].src = `images/products/${file}.jpeg`;
+    card.querySelectorAll('.swatch').forEach((s, i) => s.classList.toggle('swatch-ring', i === idx));
+  }
+
+  // Filter
+  function filterBy(family) {
+    document.querySelectorAll('[data-family]').forEach(c => {
+      c.style.display = (family === 'all' || c.dataset.family === family) ? '' : 'none';
+    });
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      const active = b.dataset.filter === family;
+      b.className = active
+        ? 'filter-btn px-6 py-3 rounded-full font-bold text-sm bg-on-surface text-white transition-all'
+        : 'filter-btn px-6 py-3 rounded-full font-bold text-sm bg-white text-on-surface-variant border border-outline-variant/40 hover:border-electric-mint transition-all';
+    });
+  }
+</script>
 </body>
 </html>
