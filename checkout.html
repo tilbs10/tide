@@ -49,6 +49,7 @@
         <legend>Payment</legend>
         <!-- Square card entry mounts here -->
         <div id="card-container"></div>
+        <p style="font-size:0.8rem; color:#666; margin-top:0.25rem;">Enter your Australian postcode in the ZIP field.</p>
         <div id="payment-status" style="margin-top:0.5rem; color: red;"></div>
       </fieldset>
 
@@ -77,7 +78,7 @@
       }
 
       const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION);
-      const card = await payments.card({ postalCode: false });
+      const card = await payments.card();
       await card.attach('#card-container');
 
       document.getElementById('pay-button').addEventListener('click', async () => {
