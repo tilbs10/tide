@@ -1,46 +1,355 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tidepop</title>
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tidepop — Swim in Full Colour</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "electric-mint": "#00E0C6",
+            "punchy-coral":  "#FF7A5C",
+            "vivid-lavender":"#7C5CFF",
+            "primary":       "#006b5e",
+            "on-primary-container": "#005e52",
+            "surface-low":   "#f5f2ff",
+            "on-surface":    "#1a1a2e",
+            "on-surface-variant": "#3b4a46",
+            "outline-variant":"#bacac5",
+            "ice-white":     "#F9FCFB",
+          },
+          borderRadius: { "32": "32px" },
+          fontFamily: {
+            headline: ["'Nunito Sans'", "sans-serif"],
+            body:     ["'Hanken Grotesk'", "sans-serif"],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .glass-header {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    body { font-family: 'Hanken Grotesk', sans-serif; background-color: #F9FCFB; }
+  </style>
 </head>
-<body>
+<body class="text-on-surface overflow-x-hidden">
 
-  <header>
-    <a href="index.html"><img src="images/brand/tidepop_logo.png" alt="Tidepop" class="logo" /></a>
-    <nav>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-    </nav>
-  </header>
+<!-- ── Navigation ── -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-4 mx-4 lg:mx-auto max-w-[1280px] bg-white/70 glass-header border border-white/20 shadow-[0_32px_64px_rgba(0,224,198,0.08)]">
+  <a href="index.html" class="flex items-center">
+    <img alt="Tidepop" class="h-10 w-auto object-contain" src="images/brand/tidepop_logo.png"/>
+  </a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-primary font-bold border-b-2 border-electric-mint pb-1 transition-all" href="shop.html">Shop</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Kids</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Performance</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="about.html">Our Story</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <a href="cart.html" class="relative p-2 text-on-surface-variant hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-punchy-coral text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </a>
+    <button class="md:hidden p-2 text-on-surface-variant">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+</header>
 
-  <main>
-    <section class="hero" style="background-image: url('images/products/kids_wearing.jpeg');">
-      <div class="hero-overlay">
-        <h1>Made for the water.</h1>
-        <p>Goggles kids love wearing — in colours they'll actually fight over.</p>
-        <a href="shop.html" class="btn">Shop Now</a>
+<main class="mt-32">
+
+  <!-- ── Hero ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-[120px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white rounded-32 p-8 md:p-16 shadow-[0_32px_64px_rgba(0,224,198,0.06)] overflow-hidden relative">
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-electric-mint/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-4 py-1 rounded-full bg-[#ffdad2] text-[#3d0600] text-xs font-bold tracking-widest uppercase mb-6">New Collection 2025</span>
+        <h1 class="font-headline font-extrabold text-[40px] md:text-[64px] leading-[1.1] tracking-[-0.03em] text-on-surface mb-6">
+          Swim in <span class="text-primary">Full Colour</span>
+        </h1>
+        <p class="text-lg leading-relaxed text-on-surface-variant mb-10 max-w-md">Crystal clear vision, ultra-comfortable fit — goggles designed for every aquatic adventure, in colours kids will actually fight over.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="shop.html" class="px-8 py-4 bg-electric-mint text-on-primary-container font-bold rounded-full shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-105 transition-transform duration-300">Shop The Range</a>
+          <a href="about.html" class="px-8 py-4 border-2 border-electric-mint text-primary font-bold rounded-full hover:bg-electric-mint/5 transition-colors">Our Story</a>
+        </div>
       </div>
-    </section>
-
-    <section class="featured">
-      <h2>Featured Products</h2>
-      <div class="product-grid" id="featured-products">
-        <!-- Products loaded from data/products.json via js/main.js -->
+      <div class="relative flex justify-center items-center">
+        <div class="relative w-full aspect-square max-w-[500px] rounded-[24px] overflow-hidden">
+          <img alt="Kids wearing Tidepop goggles" class="w-full h-full object-cover" src="images/products/kids_wearing.jpeg"/>
+          <div class="absolute top-6 right-4 bg-white shadow-xl px-4 py-3 rounded-full flex items-center gap-2 z-10">
+            <span class="material-symbols-outlined text-punchy-coral fill text-xl">wb_sunny</span>
+            <span class="text-xs font-bold tracking-widest uppercase">100% UV Protection</span>
+          </div>
+          <div class="absolute bottom-12 left-4 bg-white shadow-xl px-4 py-3 rounded-full flex items-center gap-2 z-10">
+            <span class="material-symbols-outlined text-electric-mint fill text-xl">verified</span>
+            <span class="text-xs font-bold tracking-widest uppercase">Leak-Proof Seal</span>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2026 Tidepop. All rights reserved.</p>
-  </footer>
+  <!-- ── Trust Bar ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-[120px]">
+    <div class="flex flex-wrap justify-between items-center gap-8 py-10 border-y border-outline-variant/20">
+      <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+        <div>
+          <p class="font-bold text-on-surface">Free Shipping</p>
+          <p class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Orders over $50</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-primary text-3xl">keyboard_return</span>
+        <div>
+          <p class="font-bold text-on-surface">30-Day Returns</p>
+          <p class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Risk-Free Trial</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="flex text-punchy-coral">
+          <span class="material-symbols-outlined fill">star</span>
+          <span class="material-symbols-outlined fill">star</span>
+          <span class="material-symbols-outlined fill">star</span>
+          <span class="material-symbols-outlined fill">star</span>
+          <span class="material-symbols-outlined fill">star</span>
+        </div>
+        <div>
+          <p class="font-bold text-on-surface">5-Star Rated</p>
+          <p class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Trusted by Parents</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
+  <!-- ── Featured Range ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-[120px]">
+    <div class="text-center mb-16">
+      <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] tracking-[-0.02em] text-on-surface mb-4">Find Your Perfect Pair</h2>
+      <p class="text-lg text-on-surface-variant max-w-2xl mx-auto">From professional training to weekend fun, our range is designed to fit every face and every adventure.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="group bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.08)] hover:-translate-y-2 transition-all duration-300">
+        <div class="relative h-64 bg-surface-low rounded-2xl mb-8 flex items-center justify-center overflow-hidden">
+          <img alt="Hybrid Goggle" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-500" src="images/products/hybrid_DB.jpeg"/>
+          <span class="absolute top-4 right-4 bg-punchy-coral text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">Best Seller</span>
+        </div>
+        <h3 class="font-headline font-bold text-[32px] leading-[1.2] mb-2">Hybrid</h3>
+        <p class="text-on-surface-variant mb-4">The perfect balance of comfort and performance for daily swim sessions.</p>
+        <p class="text-primary font-bold mb-6">From $34.99</p>
+        <a href="shop.html" class="block w-full py-4 rounded-full border-2 border-outline-variant/30 font-bold text-center hover:border-electric-mint hover:bg-electric-mint/5 transition-all">Shop Hybrid</a>
+      </div>
+
+      <div class="group bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.08)] hover:-translate-y-2 transition-all duration-300">
+        <div class="relative h-64 bg-surface-low rounded-2xl mb-8 flex items-center justify-center overflow-hidden">
+          <img alt="Mask Goggle" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-500" src="images/products/mask_teal.jpeg"/>
+        </div>
+        <h3 class="font-headline font-bold text-[32px] leading-[1.2] mb-2">Mask</h3>
+        <p class="text-on-surface-variant mb-4">Unrivalled field of vision. Ideal for ocean swims and open water exploring.</p>
+        <p class="text-primary font-bold mb-6">From $29.99</p>
+        <a href="shop.html" class="block w-full py-4 rounded-full border-2 border-outline-variant/30 font-bold text-center hover:border-electric-mint hover:bg-electric-mint/5 transition-all">Shop Mask</a>
+      </div>
+
+      <div class="group bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.08)] hover:-translate-y-2 transition-all duration-300">
+        <div class="relative h-64 bg-surface-low rounded-2xl mb-8 flex items-center justify-center overflow-hidden">
+          <img alt="Mini Goggle" class="w-4/5 h-4/5 object-contain group-hover:scale-110 transition-transform duration-500" src="images/products/mini_goggle.jpeg"/>
+        </div>
+        <h3 class="font-headline font-bold text-[32px] leading-[1.2] mb-2">Mini</h3>
+        <p class="text-on-surface-variant mb-4">Designed for little faces with ultra-soft seals built for all-day play.</p>
+        <p class="text-primary font-bold mb-6">From $17.99</p>
+        <a href="shop.html" class="block w-full py-4 rounded-full border-2 border-outline-variant/30 font-bold text-center hover:border-electric-mint hover:bg-electric-mint/5 transition-all">Shop Mini</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Why Tidepop ── -->
+  <section class="bg-electric-mint/10 py-[120px]">
+    <div class="max-w-[1280px] mx-auto px-5 md:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] tracking-[-0.02em] text-on-surface mb-8">Why Choose Tidepop?</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div class="flex flex-col gap-4">
+              <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined text-primary text-3xl">blur_on</span>
+              </div>
+              <h4 class="font-bold text-lg">Anti-Fog Tech</h4>
+              <p class="text-on-surface-variant">Say goodbye to steam. Our advanced coating ensures clarity throughout your swim.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined text-primary text-3xl">water_drop</span>
+              </div>
+              <h4 class="font-bold text-lg">Silicone Seal</h4>
+              <p class="text-on-surface-variant">Hospital-grade silicone provides a leak-proof fit without the pressure marks.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined text-primary text-3xl">wb_sunny</span>
+              </div>
+              <h4 class="font-bold text-lg">UV Protection</h4>
+              <p class="text-on-surface-variant">Lenses block 100% of UVA/UVB rays, keeping eyes safe in the sun.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined text-primary text-3xl">palette</span>
+              </div>
+              <h4 class="font-bold text-lg">Colour Options</h4>
+              <p class="text-on-surface-variant">Express yourself with our vibrant range of energetic, kid-approved colours.</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="aspect-square bg-white rounded-32 overflow-hidden shadow-2xl">
+            <img alt="Kids in Tidepop goggles" class="w-full h-full object-cover" src="images/products/kids_wearing.jpeg"/>
+          </div>
+          <div class="absolute -bottom-8 -left-8 bg-electric-mint p-8 rounded-32 shadow-xl max-w-[240px]">
+            <p class="text-on-primary-container font-headline font-bold text-[32px] mb-2">100%</p>
+            <p class="text-on-primary-container font-bold">Comfort guarantee — or your money back.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Reviews ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 py-[120px]">
+    <div class="text-center mb-16">
+      <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] tracking-[-0.02em] text-on-surface mb-4">Loved by Families</h2>
+      <p class="text-lg text-on-surface-variant">Real reviews from real swimmers.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="bg-white p-8 rounded-32 shadow-[0_32px_64px_rgba(0,224,198,0.06)] flex flex-col justify-between">
+        <div>
+          <div class="flex text-punchy-coral mb-6">
+            <span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span>
+          </div>
+          <p class="text-lg leading-relaxed text-on-surface mb-8 italic">"Finally, goggles my kids actually want to wear. No more fighting to get them on, and zero leaks all afternoon."</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-surface-low flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary">person</span>
+          </div>
+          <div>
+            <p class="font-bold text-on-surface">Sarah J.</p>
+            <p class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Verified Parent</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-32 shadow-[0_32px_64px_rgba(0,224,198,0.06)] flex flex-col justify-between">
+        <div>
+          <div class="flex text-punchy-coral mb-6">
+            <span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span>
+          </div>
+          <p class="text-lg leading-relaxed text-on-surface mb-8 italic">"As a swim coach, I've tried everything. The Tidepop Hybrid is easily the best value for money on the market right now."</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-surface-low flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary">person</span>
+          </div>
+          <div>
+            <p class="font-bold text-on-surface">Marcus T.</p>
+            <p class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Swim Coach</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-32 shadow-[0_32px_64px_rgba(0,224,198,0.06)] flex flex-col justify-between">
+        <div>
+          <div class="flex text-punchy-coral mb-6">
+            <span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span><span class="material-symbols-outlined fill">star</span>
+          </div>
+          <p class="text-lg leading-relaxed text-on-surface mb-8 italic">"The colours are incredible! My daughter loves her Mini set and she looks so confident in the water now."</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-surface-low flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary">person</span>
+          </div>
+          <div>
+            <p class="font-bold text-on-surface">Linda R.</p>
+            <p class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Verified Customer</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Newsletter ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-[120px]">
+    <div class="bg-vivid-lavender rounded-32 p-12 md:p-20 text-center relative overflow-hidden">
+      <div class="absolute -top-12 -left-12 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-12 -right-12 w-64 h-64 bg-electric-mint/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] text-white mb-6">Join the Pod</h2>
+        <p class="text-lg text-white/80 mb-10">Subscribe for exclusive early access to new colours and 10% off your first order.</p>
+        <form class="flex flex-col sm:flex-row gap-4">
+          <input class="flex-1 px-8 py-4 rounded-full bg-white text-on-surface focus:outline-none focus:ring-4 focus:ring-electric-mint/30 border-none" placeholder="Enter your email" type="email"/>
+          <button class="px-10 py-4 bg-electric-mint text-on-primary-container font-bold rounded-full hover:scale-105 transition-transform" type="submit">Dive In</button>
+        </form>
+        <p class="mt-6 text-xs font-bold tracking-widest uppercase text-white/50">No spam. Just pure clarity.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="border-t border-outline-variant/30 bg-ice-white">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="flex flex-col gap-6">
+      <img alt="Tidepop" class="h-8 w-auto object-contain self-start mb-2" src="images/brand/tidepop_logo.png"/>
+      <p class="text-on-surface-variant">Dive into clarity with goggles that feel like they aren't even there.</p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Shop</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">All Products</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">New Arrivals</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Support</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Returns</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Company</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Our Story</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+      <p class="text-on-surface-variant text-sm mt-4">© 2025 Tidepop. Dive into clarity.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script>
+  const badge = document.getElementById('cart-badge');
+  function updateBadge() {
+    const count = getCart().reduce((sum, item) => sum + item.qty, 0);
+    badge.textContent = count;
+    badge.classList.toggle('hidden', count === 0);
+    badge.classList.toggle('flex', count > 0);
+  }
+  updateBadge();
+</script>
 </body>
 </html>
