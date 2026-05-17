@@ -6,7 +6,7 @@
     "sku": "952083S",
     "price": 34.99,
     "category": "Hybrid Goggle",
-    "description": "The Tidepop Hybrid Goggle in Dark Blue.",
+    "description": "Deep-water depth meets bold colour. The Hybrid Goggle's flexible frame gives you a leak-free seal that holds through every lap — built for the pool or the open water.",
     "image": "images/products/hybrid-goggle-dark-blue.jpg",
     "featured": true
   },
@@ -17,7 +17,7 @@
     "sku": "383941H",
     "price": 34.99,
     "category": "Hybrid Goggle",
-    "description": "The Tidepop Hybrid Goggle in Light Blue.",
+    "description": "Sky-blue cool meets serious swim performance. The Hybrid Goggle's flexible frame fits snugly and stays put, lap after lap, session after session.",
     "image": "images/products/hybrid-goggle-light-blue.jpg",
     "featured": false
   },
@@ -28,7 +28,7 @@
     "sku": "8909003",
     "price": 34.99,
     "category": "Hybrid Goggle",
-    "description": "The Tidepop Hybrid Goggle in Lime Green.",
+    "description": "Turn heads, then chase times. The Hybrid Goggle in Lime Green delivers a flexible, leak-free fit with the kind of colour that's impossible to miss.",
     "image": "images/products/hybrid-goggle-lime-green.jpg",
     "featured": false
   },
@@ -39,7 +39,7 @@
     "sku": "G820537",
     "price": 34.99,
     "category": "Hybrid Goggle",
-    "description": "The Tidepop Hybrid Goggle in Hot Pink.",
+    "description": "Make a splash before you've even hit the water. The Hybrid Goggle in Hot Pink pairs a flexible, custom-fit seal with the boldest colour in the pool.",
     "image": "images/products/hybrid-goggle-hot-pink.jpg",
     "featured": false
   },
@@ -50,7 +50,7 @@
     "sku": "Y089253",
     "price": 34.99,
     "category": "Hybrid Goggle",
-    "description": "The Tidepop Hybrid Goggle in Purple.",
+    "description": "Stand out in the lane. The Hybrid Goggle in Purple wraps around you with a flexible seal built for pool sessions and open swims alike.",
     "image": "images/products/hybrid-goggle-purple.jpg",
     "featured": false
   },
@@ -61,7 +61,7 @@
     "sku": "166283647353",
     "price": 29.99,
     "category": "Mask Goggle",
-    "description": "The Tidepop Mask Goggle in Mint Green.",
+    "description": "Wide-eyed and ready to go. The Mask Goggle's panoramic lens gives you a clear, unobstructed view from wall to wall — in a fresh Mint Green that feels right at home in the water.",
     "image": "images/products/mask-goggle-mint-green.jpg",
     "featured": true
   },
@@ -72,7 +72,7 @@
     "sku": "166288785494",
     "price": 29.99,
     "category": "Mask Goggle",
-    "description": "The Tidepop Mask Goggle in Baby Blue.",
+    "description": "Calm colour, serious coverage. The Mask Goggle wraps around your face for a wide-angle view and a comfortable fit that lasts the whole session.",
     "image": "images/products/mask-goggle-baby-blue.jpg",
     "featured": false
   },
@@ -83,7 +83,7 @@
     "sku": "166284620331",
     "price": 29.99,
     "category": "Mask Goggle",
-    "description": "The Tidepop Mask Goggle in Baby Pink.",
+    "description": "Soft colour, strong seal. The Mask Goggle in Baby Pink gives swimmers a roomy, comfortable fit with wide-angle visibility that makes every lap feel easy.",
     "image": "images/products/mask-goggle-baby-pink.jpg",
     "featured": false
   },
@@ -94,7 +94,7 @@
     "sku": "166287463393",
     "price": 29.99,
     "category": "Mask Goggle",
-    "description": "The Tidepop Mask Goggle in Black.",
+    "description": "Classic for a reason. The Mask Goggle in Black delivers wide-angle visibility and a secure, comfortable seal — bold enough for any swimmer who means business.",
     "image": "images/products/mask-goggle-black.jpg",
     "featured": false
   },
@@ -105,7 +105,7 @@
     "sku": "166289055879",
     "price": 29.99,
     "category": "Mask Goggle",
-    "description": "The Tidepop Mask Goggle in Coral Pink.",
+    "description": "Bright by nature. The Mask Goggle in Coral Pink gives you maximum coverage and panoramic visibility in a colour that looks as good as it swims.",
     "image": "images/products/mask-goggle-coral-pink.jpg",
     "featured": false
   },
@@ -116,7 +116,7 @@
     "sku": "166289996240",
     "price": 29.99,
     "category": "Mask Goggle",
-    "description": "The Tidepop Mask Goggle in Yellow.",
+    "description": "Sun-bright and ready to race. The Mask Goggle in Yellow brings wide-angle visibility and a comfortable seal to every session — hard to miss, easy to love.",
     "image": "images/products/mask-goggle-yellow.jpg",
     "featured": false
   },
@@ -127,7 +127,7 @@
     "sku": "166281999577",
     "price": 17.99,
     "category": "Mini Goggle",
-    "description": "The Tidepop Mini Goggle in Pink/Yellow.",
+    "description": "Small fit, big personality. The Mini Goggle is built for little swimmers who mean business — a secure, leak-free seal in a compact frame that stays put no matter how fast they go.",
     "image": "images/products/mini-goggle-pink-yellow.jpg",
     "featured": true
   },
@@ -138,7 +138,7 @@
     "sku": "166282072767",
     "price": 17.99,
     "category": "Mini Goggle",
-    "description": "The Tidepop Mini Goggle in Pink/Purple.",
+    "description": "Double the colour, double the fun. The Mini Goggle's compact frame fits snugly without the bulk, keeping young swimmers comfortable and focused on what matters.",
     "image": "images/products/mini-goggle-pink-purple.jpg",
     "featured": false
   },
@@ -149,7 +149,7 @@
     "sku": "166282596775",
     "price": 17.99,
     "category": "Mini Goggle",
-    "description": "The Tidepop Mini Goggle in Black/Green.",
+    "description": "Sleek and ready for action. The Mini Goggle in Black/Green pairs a low-profile fit with a secure seal — for young swimmers who want to move fast and look sharp doing it.",
     "image": "images/products/mini-goggle-black-green.jpg",
     "featured": false
   },
@@ -160,7 +160,7 @@
     "sku": "166282977987",
     "price": 17.99,
     "category": "Mini Goggle",
-    "description": "The Tidepop Mini Goggle in Blue/Yellow.",
+    "description": "Electric colour, precision fit. The Mini Goggle keeps things compact and comfortable, with a leak-free seal built for energetic little swimmers who never slow down.",
     "image": "images/products/mini-goggle-blue-yellow.jpg",
     "featured": false
   }
