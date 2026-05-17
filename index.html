@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tidepop</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <a href="index.html"><img src="images/brand/logo.png" alt="Tidepop" class="logo" /></a>
+    <nav>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to Tidepop</h1>
+      <p>Your tagline goes here.</p>
+      <a href="shop.html" class="btn">Shop Now</a>
+    </section>
+
+    <section class="featured">
+      <h2>Featured Products</h2>
+      <div class="product-grid" id="featured-products">
+        <!-- Products loaded from data/products.json via js/main.js -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Tidepop. All rights reserved.</p>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
