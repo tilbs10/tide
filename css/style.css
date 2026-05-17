@@ -24,9 +24,10 @@ nav a:hover { text-decoration: underline; }
 .btn:hover { background: #2e7d4a; }
 
 /* ── Hero ── */
-.hero { text-align: center; padding: 4rem 1rem; background: var(--lavender); border-radius: 12px; margin-bottom: 2rem; }
-.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--green); }
-.hero p { font-size: 1.2rem; margin-bottom: 2rem; color: var(--muted); }
+.hero { position: relative; background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 2rem; min-height: 420px; display: flex; align-items: center; justify-content: center; }
+.hero-overlay { text-align: center; padding: 3rem 2rem; background: rgba(0,0,0,0.38); border-radius: 12px; width: 100%; }
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #fff; }
+.hero p { font-size: 1.2rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9); }
 
 /* ── Product Grid ── */
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
