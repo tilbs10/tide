@@ -11,8 +11,8 @@
   'use strict';
 
   // ── Config — replace with your Supabase project values ──────────────────
-  const SUPABASE_URL     = 'YOUR_SUPABASE_URL';       // e.g. https://xxxx.supabase.co
-  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // starts with eyJ...
+  const SUPABASE_URL     = 'SUPABASE_URL=https://cxuglnxsjafycmgnwpmm.supabase.co';       // e.g. https://xxxx.supabase.co
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN4dWdsbnhzamFmeWNtZ253cG1tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMDY5MDEsImV4cCI6MjA5NDU4MjkwMX0.edDSBZp1pLuNYL4201NQtx6vfGlYq9KWhIK_rtNAhBQ'; // starts with eyJ...
   // ─────────────────────────────────────────────────────────────────────────
 
   const EDGE = `${SUPABASE_URL}/functions/v1`;
