@@ -1,33 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Tidepop</title>
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Story — Tidepop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "electric-mint": "#00E0C6",
+            "punchy-coral":  "#FF7A5C",
+            "vivid-lavender":"#7C5CFF",
+            "primary":       "#006b5e",
+            "on-primary-container": "#005e52",
+            "surface-low":   "#f5f2ff",
+            "on-surface":    "#1a1a2e",
+            "on-surface-variant": "#3b4a46",
+            "outline-variant":"#bacac5",
+            "ice-white":     "#F9FCFB",
+          },
+          borderRadius: { "32": "32px" },
+          fontFamily: {
+            headline: ["'Nunito Sans'", "sans-serif"],
+            body:     ["'Hanken Grotesk'", "sans-serif"],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .glass-header { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    body { font-family: 'Hanken Grotesk', sans-serif; background-color: #F9FCFB; }
+  </style>
 </head>
-<body>
+<body class="text-on-surface overflow-x-hidden">
 
-  <header>
-    <a href="index.html"><img src="images/brand/tidepop_logo.png" alt="Tidepop" class="logo" /></a>
-    <nav>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-    </nav>
-  </header>
+<!-- ── Navigation ── -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-4 mx-4 lg:mx-auto max-w-[1280px] bg-white/70 glass-header border border-white/20 shadow-[0_32px_64px_rgba(0,224,198,0.08)]">
+  <a href="index.html" class="flex items-center">
+    <img alt="Tidepop" class="h-10 w-auto object-contain" src="images/brand/tidepop_logo.png"/>
+  </a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Shop</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Kids</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Performance</a>
+    <a class="text-primary font-bold border-b-2 border-electric-mint pb-1 transition-all" href="about.html">Our Story</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <a href="cart.html" class="relative p-2 text-on-surface-variant hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-punchy-coral text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </a>
+    <button class="md:hidden p-2 text-on-surface-variant">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+</header>
 
-  <main class="content-page">
-    <h1>About Tidepop</h1>
-    <p>Tell your story here.</p>
-  </main>
+<main class="mt-32">
 
-  <footer>
-    <p>&copy; 2026 Tidepop. All rights reserved.</p>
-  </footer>
+  <!-- ── Hero ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-[120px]">
+    <div class="bg-white rounded-32 p-8 md:p-16 shadow-[0_32px_64px_rgba(0,224,198,0.06)] overflow-hidden relative">
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-electric-mint/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-vivid-lavender/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 max-w-3xl">
+        <span class="inline-block px-4 py-1 rounded-full bg-[#ffdad2] text-[#3d0600] text-xs font-bold tracking-widest uppercase mb-6">Our Story</span>
+        <h1 class="font-headline font-extrabold text-[40px] md:text-[64px] leading-[1.1] tracking-[-0.03em] text-on-surface mb-6">
+          The water should feel like <span class="text-primary">home.</span>
+        </h1>
+        <p class="text-lg leading-relaxed text-on-surface-variant max-w-2xl">
+          We started Tidepop with one simple belief — that a child who feels comfortable and confident in the water will carry that love with them for life.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <script src="js/cart.js"></script>
+  <!-- ── Origin Story ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-[120px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="aspect-[4/3] bg-white rounded-32 overflow-hidden shadow-2xl">
+        <img alt="Kids at the pool" class="w-full h-full object-cover" src="images/products/kids_wearing.jpeg"/>
+      </div>
+      <div>
+        <h2 class="font-headline font-extrabold text-[32px] md:text-[40px] leading-[1.2] tracking-[-0.02em] text-on-surface mb-6">It started at the pool edge.</h2>
+        <div class="flex flex-col gap-6 text-lg leading-relaxed text-on-surface-variant">
+          <p>Every swimming lesson, the same scene played out — kids fussing with leaking goggles, uncomfortable seals leaving red marks, straps that wouldn't stay. Small frustrations that added up to one big problem: children who were distracted, uncomfortable, and slowly losing their enthusiasm for the water.</p>
+          <p>We knew it didn't have to be that way. The right pair of goggles should disappear the moment you put them on — no leaks, no pressure, no fidgeting. Just clear water and open sky.</p>
+          <p>So we built Tidepop. Goggles that fit properly, feel great, and come in colours that kids actually get excited about. Because when the gear gets out of the way, the joy rushes in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Mission ── -->
+  <section class="bg-electric-mint/10 py-[120px]">
+    <div class="max-w-[1280px] mx-auto px-5 md:px-16 text-center">
+      <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] tracking-[-0.02em] text-on-surface mb-6">More than goggles.</h2>
+      <p class="text-xl leading-relaxed text-on-surface-variant max-w-3xl mx-auto mb-16">
+        We're building something bigger than a product. Every child who grows up confident in the water goes on to discover something new — surfing, snorkelling, open water swimming, water polo, sailing. A whole life lived close to the ocean. That starts here, at the pool edge, at age five, with a pair of goggles that fits.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.08)] text-left">
+          <div class="w-14 h-14 bg-electric-mint/20 rounded-2xl flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-primary text-2xl">self_improvement</span>
+          </div>
+          <h3 class="font-headline font-bold text-xl mb-3">Build Confidence Early</h3>
+          <p class="text-on-surface-variant leading-relaxed">A child who feels at ease in the water becomes a child who seeks it out. Comfort leads to confidence. Confidence leads to adventure.</p>
+        </div>
+
+        <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.08)] text-left">
+          <div class="w-14 h-14 bg-punchy-coral/20 rounded-2xl flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-punchy-coral text-2xl">waves</span>
+          </div>
+          <h3 class="font-headline font-bold text-xl mb-3">A Life Near the Water</h3>
+          <p class="text-on-surface-variant leading-relaxed">From backyard pools to open ocean, we want every Tidepop kid to grow up with water as a natural part of who they are — not something to fear.</p>
+        </div>
+
+        <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.08)] text-left">
+          <div class="w-14 h-14 bg-vivid-lavender/20 rounded-2xl flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-vivid-lavender text-2xl">palette</span>
+          </div>
+          <h3 class="font-headline font-bold text-xl mb-3">Colour as Expression</h3>
+          <p class="text-on-surface-variant leading-relaxed">Kids should feel proud of what they wear in the water, not just functional. Bright colours are their way of saying: I'm here, I'm ready, and I belong.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Values ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 py-[120px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] tracking-[-0.02em] text-on-surface mb-8">What we stand for.</h2>
+        <div class="flex flex-col gap-8">
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 bg-electric-mint/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">verified</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg mb-2">Fit that actually works</h4>
+              <p class="text-on-surface-variant leading-relaxed">Every goggle is designed around real kids' faces — not scaled-down adult frames. The seal is soft, the strap adjusts easily, and once they're on, they stay on.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 bg-electric-mint/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">visibility</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg mb-2">Crystal clear vision</h4>
+              <p class="text-on-surface-variant leading-relaxed">Anti-fog lenses and 100% UV protection mean kids see the world below the surface exactly as it is — which, as it turns out, is pretty magical.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 bg-electric-mint/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">favorite</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg mb-2">Made for the long run</h4>
+              <p class="text-on-surface-variant leading-relaxed">We build goggles that last — because the goal isn't a single swim lesson. It's a decade of Saturday mornings at the pool, of beach holidays, of kids who never want to get out of the water.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="bg-vivid-lavender rounded-32 p-12 md:p-16 text-white relative overflow-hidden">
+          <div class="absolute -top-8 -right-8 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="relative z-10">
+            <p class="font-headline font-extrabold text-[56px] leading-none mb-4">3</p>
+            <p class="font-bold text-xl mb-2">Goggle families.</p>
+            <p class="text-white/70 mb-10">Hybrid, Mask, and Mini — each designed for a different kind of swimmer, a different kind of adventure.</p>
+            <p class="font-headline font-extrabold text-[56px] leading-none mb-4">15+</p>
+            <p class="font-bold text-xl mb-2">Colours to choose from.</p>
+            <p class="text-white/70 mb-10">Because choosing your colour is half the fun.</p>
+            <p class="font-headline font-extrabold text-[56px] leading-none mb-4">1</p>
+            <p class="font-bold text-xl mb-2">Simple mission.</p>
+            <p class="text-white/70">Get kids in the water, and keep them there.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 mb-[120px]">
+    <div class="bg-white rounded-32 p-12 md:p-20 text-center shadow-[0_32px_64px_rgba(0,224,198,0.06)] relative overflow-hidden">
+      <div class="absolute -top-16 -right-16 w-64 h-64 bg-electric-mint/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] tracking-[-0.02em] text-on-surface mb-6">Ready to dive in?</h2>
+        <p class="text-lg text-on-surface-variant max-w-xl mx-auto mb-10">Find the perfect pair for your little swimmer — or the big one — and start building a life in the water.</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="shop.html" class="px-8 py-4 bg-electric-mint text-on-primary-container font-bold rounded-full shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-105 transition-transform duration-300">Shop the Range</a>
+          <a href="contact.html" class="px-8 py-4 border-2 border-electric-mint text-primary font-bold rounded-full hover:bg-electric-mint/5 transition-colors">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="border-t border-outline-variant/30 bg-ice-white">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="flex flex-col gap-6">
+      <img alt="Tidepop" class="h-8 w-auto object-contain self-start mb-2" src="images/brand/tidepop_logo.png"/>
+      <p class="text-on-surface-variant">Dive into clarity with goggles that feel like they aren't even there.</p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Shop</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">All Products</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">New Arrivals</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Support</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Returns</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary">Company</p>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Our Story</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+      <p class="text-on-surface-variant text-sm mt-4">© 2025 Tidepop. Dive into clarity.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script>
+  const badge = document.getElementById('cart-badge');
+  function updateBadge() {
+    const count = getCart().reduce((sum, item) => sum + item.qty, 0);
+    badge.textContent = count;
+    badge.classList.toggle('hidden', count === 0);
+    badge.classList.toggle('flex', count > 0);
+  }
+  updateBadge();
+</script>
 </body>
 </html>
