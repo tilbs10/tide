@@ -12,6 +12,7 @@ function productCardHTML(product) {
         <img src="${product.image}" alt="${product.name}" />
         <div class="card-body">
           <h3>${product.name}</h3>
+          <p class="variation">${product.variation}</p>
           <p class="price">$${product.price.toFixed(2)}</p>
         </div>
       </a>
