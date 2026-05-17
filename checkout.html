@@ -6,11 +6,13 @@
   <title>Checkout — Tidepop</title>
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Square Web Payments SDK -->
+  <script src="https://web.squarecdn.com/v1/square.js"></script>
 </head>
 <body>
 
   <header>
-    <a href="index.html"><img src="images/brand/logo.png" alt="Tidepop" class="logo" /></a>
+    <a href="index.html"><img src="images/brand/tidepop_logo.png" alt="Tidepop" class="logo" /></a>
     <nav>
       <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
@@ -43,8 +45,14 @@
         <p>Total: <strong id="checkout-total">$0.00</strong></p>
       </div>
 
-      <!-- Payment integration (e.g. Stripe) goes here -->
-      <button type="submit" class="btn">Place Order</button>
+      <fieldset>
+        <legend>Payment</legend>
+        <!-- Square card entry mounts here -->
+        <div id="card-container"></div>
+        <div id="payment-status" style="margin-top:0.5rem; color: red;"></div>
+      </fieldset>
+
+      <button id="pay-button" type="button" class="btn">Pay Now</button>
     </form>
   </main>
 
@@ -54,5 +62,48 @@
 
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    // ── Square configuration ──────────────────────────────────────────
+    // Replace these two values with your own from Square Developer Dashboard
+    // https://developer.squareup.com/apps
+    const SQUARE_APP_ID   = 'YOUR_SQUARE_APP_ID';
+    const SQUARE_LOCATION = 'YOUR_SQUARE_LOCATION_ID';
+    // ─────────────────────────────────────────────────────────────────
+
+    async function initSquare() {
+      if (!window.Square) {
+        document.getElementById('payment-status').textContent = 'Square failed to load. Please refresh.';
+        return;
+      }
+
+      const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION);
+      const card = await payments.card();
+      await card.attach('#card-container');
+
+      document.getElementById('pay-button').addEventListener('click', async () => {
+        const statusEl = document.getElementById('payment-status');
+        statusEl.textContent = '';
+
+        const result = await card.tokenize();
+        if (result.status === 'OK') {
+          // result.token is the payment token — send this to your backend or Square's API
+          // For now, log it so you can test the flow
+          console.log('Payment token:', result.token);
+          statusEl.style.color = 'green';
+          statusEl.textContent = 'Payment details captured. Token: ' + result.token;
+          // TODO: send token + order details to your server to complete the charge
+        } else {
+          statusEl.textContent = result.errors.map(e => e.message).join(', ');
+        }
+      });
+    }
+
+    initSquare();
+  </script>
+
+  <style>
+    #card-container { min-height: 90px; padding: 0.5rem 0; }
+    #pay-button { margin-top: 0.5rem; width: 100%; max-width: 600px; }
+  </style>
 </body>
 </html>
