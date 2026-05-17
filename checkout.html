@@ -6,8 +6,8 @@
   <title>Checkout — Tidepop</title>
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <!-- Square Web Payments SDK -->
-  <script src="https://web.squarecdn.com/v1/square.js"></script>
+  <!-- Square Web Payments SDK (sandbox) -->
+  <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 </head>
 <body>
 
@@ -66,8 +66,8 @@
     // ── Square configuration ──────────────────────────────────────────
     // Replace these two values with your own from Square Developer Dashboard
     // https://developer.squareup.com/apps
-    const SQUARE_APP_ID   = 'YOUR_SQUARE_APP_ID';
-    const SQUARE_LOCATION = 'YOUR_SQUARE_LOCATION_ID';
+    const SQUARE_APP_ID   = 'sandbox-sq0idb-fV2k7SUncrLUCzEHLo5A9Q';
+    const SQUARE_LOCATION = 'LDZG4Q7XRB5BS';
     // ─────────────────────────────────────────────────────────────────
 
     async function initSquare() {
@@ -77,7 +77,7 @@
       }
 
       const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION);
-      const card = await payments.card();
+      const card = await payments.card({ postalCode: false });
       await card.attach('#card-container');
 
       document.getElementById('pay-button').addEventListener('click', async () => {
