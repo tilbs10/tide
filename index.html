@@ -377,10 +377,11 @@
       <div class="relative z-10 max-w-2xl mx-auto">
         <h2 class="font-headline font-extrabold text-[32px] md:text-[48px] leading-[1.15] text-white mb-6">Join the Pod</h2>
         <p class="text-lg text-white/80 mb-10">Subscribe for exclusive early access to new colours and 10% off your first order.</p>
-        <form class="flex flex-col sm:flex-row gap-4">
-          <input class="flex-1 px-8 py-4 rounded-full bg-white text-on-surface focus:outline-none focus:ring-4 focus:ring-electric-mint/30 border-none" placeholder="Enter your email" type="email"/>
+        <form data-form="newsletter" class="flex flex-col sm:flex-row gap-4">
+          <input class="flex-1 px-8 py-4 rounded-full bg-white text-on-surface focus:outline-none focus:ring-4 focus:ring-electric-mint/30 border-none" placeholder="Enter your email" type="email" name="email" required/>
           <button class="px-10 py-4 bg-electric-mint text-on-primary-container font-bold rounded-full hover:scale-105 transition-transform" type="submit">Dive In</button>
         </form>
+        <p class="mt-4 text-xs text-white/50">By subscribing you agree to receive marketing emails from Tidepop. Unsubscribe any time.</p>
         <p class="mt-6 text-xs font-bold tracking-widest uppercase text-white/50">No spam. Just pure clarity.</p>
       </div>
     </div>
@@ -417,6 +418,7 @@
 </footer>
 
 <script src="js/cart.js"></script>
+<script src="js/tidepop-tracking.js"></script>
 <script>
   const badge = document.getElementById('cart-badge');
   function updateBadge() {

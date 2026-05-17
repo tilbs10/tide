@@ -106,7 +106,7 @@
         </div>
 
         <div class="flex gap-3 mb-6">
-          <button id="main-atc" onclick="handleAddToCart()" class="flex-1 py-5 bg-electric-mint text-on-primary-container font-bold rounded-full text-lg shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-[1.02] transition-transform">Add to Cart</button>
+          <button id="main-atc" data-product="mini" onclick="handleAddToCart()" class="flex-1 py-5 bg-electric-mint text-on-primary-container font-bold rounded-full text-lg shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-[1.02] transition-transform">Add to Cart</button>
           <button class="w-14 h-14 rounded-full border-2 border-outline-variant/30 flex items-center justify-center hover:border-punchy-coral hover:text-punchy-coral transition-all" title="Wishlist"><span class="material-symbols-outlined">favorite</span></button>
         </div>
 
@@ -209,6 +209,7 @@
 </div>
 
 <script src="js/cart.js"></script>
+<script src="js/tidepop-tracking.js"></script>
 <script>
   const PRODUCT = {
     name:'Tidepop Mini Goggle', price:17.99,
