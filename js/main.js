@@ -1,8 +1,17 @@
 // Loads products from data/products.json and renders them on the page
 
+let PRODUCTS = [];
+
 async function loadProducts() {
+  if (PRODUCTS.length) return PRODUCTS;
   const res = await fetch('data/products.json');
-  return res.json();
+  PRODUCTS = await res.json();
+  return PRODUCTS;
+}
+
+function addToCartById(id) {
+  const product = PRODUCTS.find(p => p.id === id);
+  if (product) addToCart(product);
 }
 
 function productCardHTML(product) {
@@ -17,7 +26,7 @@ function productCardHTML(product) {
         </div>
       </a>
       <div class="card-body">
-        <button class="btn" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</button>
+        <button class="btn" onclick="addToCartById(${product.id})">Add to Cart</button>
       </div>
     </div>
   `;
