@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Tidepop</title>
+</head>
+<body style="margin:0;padding:0;background-color:#EAE6F8;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+
+        <!-- Card -->
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:24px;overflow:hidden;">
+
+          <!-- Logo header -->
+          <tr>
+            <td align="center" style="background:#EAE6F8;padding:28px 40px;">
+              <img src="https://tilbs10.github.io/tide/images/brand/tidepop_logo.png" alt="Tidepop" width="160" style="display:block;height:auto;border-radius:12px;"/>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:48px 48px 32px;">
+
+              <!-- Greeting -->
+              <p style="margin:0 0 24px;font-size:28px;font-weight:800;color:#1a1a2e;line-height:1.2;">
+                Hi {{ person.first_name|default:"there" }},
+              </p>
+
+              <p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#3b4a46;">
+                Thanks for joining the pod.
+              </p>
+
+              <p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#3b4a46;">
+                We started Tidepop because kids deserve goggles that actually fit — no leaks, no pressure marks, no fighting at the pool edge. Just clear water and confidence from the very first lesson.
+              </p>
+
+              <p style="margin:0 0 32px;font-size:16px;line-height:1.6;color:#3b4a46;">
+                As a welcome gift, here's 10% off your first order:
+              </p>
+
+              <!-- Discount code block -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="background:#EAE6F8;border-radius:16px;padding:24px;margin-bottom:32px;">
+                    <p style="margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#3b4a46;">Your discount code</p>
+                    <p style="margin:0;font-size:32px;font-weight:800;letter-spacing:0.08em;color:#006b5e;">WELCOME10</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Spacer -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="32"></td></tr></table>
+
+              <!-- CTA Button -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center">
+                    <a href="https://tilbs10.github.io/tide/shop.html" style="display:inline-block;background:#00E0C6;color:#005e52;font-size:16px;font-weight:700;text-decoration:none;padding:16px 40px;border-radius:9999px;letter-spacing:0.01em;">Shop the Range</a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 48px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td height="1" style="background:#EAE6F8;font-size:0;line-height:0;">&nbsp;</td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Trust strip -->
+          <tr>
+            <td style="padding:24px 48px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#bacac5;">
+                    Free Shipping Over $50 &nbsp;·&nbsp; 30-Day Returns &nbsp;·&nbsp; Secure Checkout
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="background:#1a1a2e;padding:24px 40px;border-radius:0 0 24px 24px;">
+              <p style="margin:0 0 8px;font-size:13px;color:rgba(255,255,255,0.5);">
+                © 2025 Tidepop. Dive into clarity.
+              </p>
+              <p style="margin:0;font-size:13px;color:rgba(255,255,255,0.4);">
+                You're receiving this because you subscribed at tidepop.com.au<br/>
+                <a href="{{ unsubscribe_url }}" style="color:#00E0C6;text-decoration:underline;">Unsubscribe</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Card -->
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
