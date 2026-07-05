@@ -51,7 +51,8 @@
   </div>
 
   <section class="max-w-[1280px] mx-auto px-5 md:px-16 py-6">
-    <h1 class="font-headline font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-on-surface mb-10">Your Cart</h1>
+    <h1 class="font-headline font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-on-surface mb-3">Your Cart</h1>
+    <p class="text-on-surface-variant text-lg mb-10">Bright goggles, calm checkout. Almost there.</p>
 
     <!-- Empty State -->
     <div id="empty-state" class="hidden">
@@ -87,6 +88,44 @@
           </div>
         </div>
       </div>
+
+      <!-- Brand promise strip -->
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.06)] flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-electric-mint/15 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary">local_shipping</span>
+          </div>
+          <div>
+            <p class="font-headline font-bold text-on-surface text-sm">Free shipping over $50</p>
+            <p class="text-on-surface-variant text-xs">Australia-wide, no codes needed</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.06)] flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-vivid-lavender/10 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-vivid-lavender">verified_user</span>
+          </div>
+          <div>
+            <p class="font-headline font-bold text-on-surface text-sm">30-day fit guarantee</p>
+            <p class="text-on-surface-variant text-xs">Not the right fit? Easy returns</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.06)] flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-punchy-coral/10 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-punchy-coral">sunny</span>
+          </div>
+          <div>
+            <p class="font-headline font-bold text-on-surface text-sm">Made for Queensland summers</p>
+            <p class="text-on-surface-variant text-xs">UV-tested lenses, salt-proof seals</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upsell -->
+    <div id="upsell" class="mt-20 hidden">
+      <p class="text-xs font-bold tracking-widest uppercase text-primary mb-2">Complete the kit</p>
+      <h2 class="font-headline font-extrabold text-[28px] md:text-[36px] leading-[1.1] tracking-[-0.02em] text-on-surface">You might also like</h2>
+      <div id="upsell-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8"></div>
     </div>
   </section>
 </main>
@@ -145,8 +184,74 @@
     document.getElementById('shipping-note').className = subtotal >= 50 ? 'font-bold text-primary' : 'font-bold text-on-surface';
   }
 
-  function adjustQty(id, newQty) { updateItemQty(id, newQty); renderCart(); }
-  function removeItem(id) { removeFromCart(id); renderCart(); }
+  function adjustQty(id, newQty) { updateItemQty(id, newQty); renderCart(); renderUpsell(); }
+  function removeItem(id) { removeFromCart(id); renderCart(); renderUpsell(); }
+
+  // ── Upsell ──────────────────────────────────────────────────────────
+  // Placeholder merchandising: suggest products from lines not already in
+  // the cart (featured colourway first). Swap for smarter logic later.
+  let allProducts = [];
+  const SLUGS = { 'Hybrid Goggle': 'hybrid', 'Mask Goggle': 'mask', 'Mini Goggle': 'mini' };
+
+  function pickUpsell() {
+    const cart = getCart();
+    const cartIds = new Set(cart.map(i => i.id));
+    const cartCategories = new Set(
+      allProducts.filter(p => cartIds.has(p.id)).map(p => p.category)
+    );
+    const candidates = allProducts
+      .filter(p => !cartIds.has(p.id))
+      .sort((a, b) =>
+        (cartCategories.has(a.category) - cartCategories.has(b.category)) ||
+        (b.featured - a.featured)
+      );
+    // One suggestion per product line, up to 3
+    const seen = new Set(), picks = [];
+    for (const p of candidates) {
+      if (seen.has(p.category)) continue;
+      seen.add(p.category);
+      picks.push(p);
+      if (picks.length === 3) break;
+    }
+    return picks;
+  }
+
+  function renderUpsell() {
+    const section = document.getElementById('upsell');
+    if (!allProducts.length) { section.classList.add('hidden'); return; }
+    const picks = pickUpsell();
+    if (!picks.length) { section.classList.add('hidden'); return; }
+
+    document.getElementById('upsell-grid').innerHTML = picks.map(p => `
+      <div class="bg-white rounded-32 p-6 shadow-[0_32px_64px_rgba(0,224,198,0.06)] flex flex-col">
+        <div class="rounded-2xl bg-surface-low aspect-square flex items-center justify-center overflow-hidden mb-5">
+          <img src="${p.image}" alt="${p.name} — ${p.variation}" class="w-full h-full object-contain p-4"/>
+        </div>
+        <p class="font-headline font-bold text-on-surface leading-tight">${p.name}</p>
+        <p class="text-on-surface-variant text-sm mb-3">${p.variation}</p>
+        <div class="flex items-center justify-between mt-auto">
+          <p class="font-headline font-extrabold text-primary text-lg">$${p.price.toFixed(2)}</p>
+          <button onclick="addUpsell(${p.id})" class="px-5 py-2.5 rounded-full border-2 border-outline-variant/30 font-bold text-sm hover:border-electric-mint hover:bg-electric-mint/5 transition-all">Add to Cart</button>
+        </div>
+      </div>
+    `).join('');
+    section.classList.remove('hidden');
+  }
+
+  function addUpsell(id) {
+    const p = allProducts.find(x => x.id === id);
+    if (!p) return;
+    addToCart({ id: p.id, name: p.name, variation: p.variation, price: p.price, image: p.image, qty: 1 });
+    window.TidepopCart?.add(SLUGS[p.category] || p.category, p.variation, 1);
+    updateCartCount(); // tracking module rewrites the badge from its own store; restore the real count
+    renderCart();
+    renderUpsell();
+  }
+
+  fetch('data/products.json')
+    .then(res => res.json())
+    .then(products => { allProducts = products; renderUpsell(); })
+    .catch(() => {}); // upsell is optional — cart works without it
 
   renderCart();
 </script>

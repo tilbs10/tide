@@ -1,110 +1,305 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Checkout — Tidepop</title>
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { "electric-mint":"#00E0C6","punchy-coral":"#FF7A5C","vivid-lavender":"#7C5CFF","primary":"#006b5e","on-primary-container":"#005e52","surface-low":"#f5f2ff","on-surface":"#1a1a2e","on-surface-variant":"#3b4a46","outline-variant":"#bacac5","ice-white":"#F9FCFB" },
+        borderRadius: { "32":"32px" },
+        fontFamily: { headline:["'Nunito Sans'","sans-serif"], body:["'Hanken Grotesk'","sans-serif"] }
+      }}
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; display:inline-block; vertical-align:middle; }
+    .fill { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
+    .glass-header { backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    body { font-family:'Hanken Grotesk',sans-serif; background-color:#F9FCFB; }
+    .tp-input { width:100%; border-radius:16px; border-color:rgba(186,202,197,0.5); background:#fff; padding:0.85rem 1rem; font-size:0.95rem; }
+    .tp-input:focus { border-color:#00E0C6; --tw-ring-color:#00E0C6; }
+    #card-container { min-height: 90px; }
+  </style>
   <!-- Square Web Payments SDK (sandbox) -->
   <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 </head>
-<body>
+<body class="text-on-surface overflow-x-hidden">
 
-  <header>
-    <a href="index.html"><img src="images/brand/tidepop_logo.png" alt="Tidepop" class="logo" /></a>
-    <nav>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-    </nav>
-  </header>
+<!-- Nav -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-4 mx-4 lg:mx-auto max-w-[1280px] bg-white/70 glass-header border border-white/20 shadow-[0_32px_64px_rgba(0,224,198,0.08)]">
+  <a href="index.html"><img alt="Tidepop" class="h-20 w-auto object-contain rounded-2xl" src="images/brand/tidepop_logo.png"/></a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Shop</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Kids</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Performance</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="about.html">Our Story</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <a href="cart.html" class="relative p-2 text-primary hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-punchy-coral text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </a>
+  </div>
+</header>
 
-  <main class="checkout">
-    <h1>Checkout</h1>
+<main class="mt-32 pb-[120px]">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 pt-8 pb-4">
+    <p class="text-sm text-on-surface-variant">
+      <a href="index.html" class="hover:text-primary transition-colors">Home</a><span class="mx-2">›</span>
+      <a href="cart.html" class="hover:text-primary transition-colors">Your Cart</a><span class="mx-2">›</span>
+      <span class="text-on-surface font-medium">Checkout</span>
+    </p>
+  </div>
 
-    <form id="checkout-form">
-      <fieldset>
-        <legend>Contact</legend>
-        <label>Name <input type="text" name="name" required /></label>
-        <label>Email <input type="email" name="email" required /></label>
-      </fieldset>
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 py-6">
+    <h1 class="font-headline font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-on-surface mb-3">Checkout</h1>
+    <p class="text-on-surface-variant text-lg mb-10">Nearly in the water. Just a few details to go.</p>
 
-      <fieldset>
-        <legend>Shipping Address</legend>
-        <label>Address <input type="text" name="address" required /></label>
-        <label>City <input type="text" name="city" required /></label>
-        <label>Postcode <input type="text" name="postcode" required /></label>
-        <label>Country <input type="text" name="country" required /></label>
-      </fieldset>
-
-      <div class="order-summary">
-        <h2>Order Summary</h2>
-        <div id="checkout-items"></div>
-        <p>Total: <strong id="checkout-total">$0.00</strong></p>
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden">
+      <div class="bg-white rounded-32 p-16 text-center shadow-[0_32px_64px_rgba(0,224,198,0.06)] max-w-lg mx-auto">
+        <div class="w-24 h-24 rounded-full bg-surface-low flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-on-surface-variant text-4xl">shopping_cart</span>
+        </div>
+        <h2 class="font-headline font-bold text-2xl text-on-surface mb-3">Nothing to check out yet</h2>
+        <p class="text-on-surface-variant mb-8">Your cart is empty. Find the perfect pair and come back.</p>
+        <a href="shop.html" class="inline-block px-8 py-4 bg-electric-mint text-on-primary-container font-bold rounded-full shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-105 transition-transform">Browse the Range</a>
       </div>
+    </div>
 
-      <fieldset>
-        <legend>Payment</legend>
-        <!-- Square card entry mounts here -->
-        <div id="card-container"></div>
-        <p style="font-size:0.8rem; color:#666; margin-top:0.25rem;">Enter your Australian postcode in the ZIP field.</p>
-        <div id="payment-status" style="margin-top:0.5rem; color: red;"></div>
-      </fieldset>
+    <!-- Checkout State -->
+    <div id="checkout-state" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
-      <button id="pay-button" type="button" class="btn">Pay Now</button>
-    </form>
-  </main>
+        <!-- Form -->
+        <form id="checkout-form" class="lg:col-span-2 flex flex-col gap-6" novalidate>
 
-  <footer>
-    <p>&copy; 2026 Tidepop. All rights reserved.</p>
-  </footer>
+          <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.06)]">
+            <h2 class="font-headline font-bold text-xl text-on-surface mb-6">Contact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Name</span>
+                <input class="tp-input" type="text" name="name" autocomplete="name" required/>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Email</span>
+                <input class="tp-input" type="email" name="email" autocomplete="email" required/>
+              </label>
+            </div>
+            <p class="text-xs text-on-surface-variant mt-4">We'll only use your email for order updates.</p>
+          </div>
 
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-    // ── Square configuration ──────────────────────────────────────────
-    // Replace these two values with your own from Square Developer Dashboard
-    // https://developer.squareup.com/apps
-    const SQUARE_APP_ID   = 'sandbox-sq0idb-fV2k7SUncrLUCzEHLo5A9Q';
-    const SQUARE_LOCATION = 'LDZG4Q7XRB5BS';
-    // ─────────────────────────────────────────────────────────────────
+          <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.06)]">
+            <h2 class="font-headline font-bold text-xl text-on-surface mb-6">Shipping address</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <label class="block md:col-span-2">
+                <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Street address</span>
+                <input class="tp-input" type="text" name="address" autocomplete="street-address" required/>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Suburb</span>
+                <input class="tp-input" type="text" name="suburb" autocomplete="address-level2" required/>
+              </label>
+              <div class="grid grid-cols-2 gap-4">
+                <label class="block">
+                  <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">State</span>
+                  <select class="tp-input" name="state" required>
+                    <option value="QLD">QLD</option><option value="NSW">NSW</option><option value="VIC">VIC</option>
+                    <option value="SA">SA</option><option value="WA">WA</option><option value="TAS">TAS</option>
+                    <option value="NT">NT</option><option value="ACT">ACT</option>
+                  </select>
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Postcode</span>
+                  <input class="tp-input" type="text" name="postcode" inputmode="numeric" pattern="[0-9]{4}" autocomplete="postal-code" required/>
+                </label>
+              </div>
+            </div>
+            <p class="text-xs text-on-surface-variant mt-4">Shipping within Australia only, for now.</p>
+          </div>
 
-    async function initSquare() {
-      if (!window.Square) {
-        document.getElementById('payment-status').textContent = 'Square failed to load. Please refresh.';
-        return;
-      }
+          <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.06)]">
+            <h2 class="font-headline font-bold text-xl text-on-surface mb-6">Payment</h2>
+            <!-- Square card entry mounts here -->
+            <div id="card-container"></div>
+            <p class="text-xs text-on-surface-variant mt-1">Enter your Australian postcode in the ZIP field.</p>
+            <div id="payment-status" class="mt-3 text-sm font-medium text-punchy-coral"></div>
+            <div class="flex items-center gap-2 mt-5 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-primary text-sm">lock</span>
+              Payments securely processed by Square. Card details never touch our servers.
+            </div>
+          </div>
+        </form>
 
-      const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION);
-      const card = await payments.card();
-      await card.attach('#card-container');
+        <!-- Order Summary -->
+        <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.06)] sticky top-32">
+          <h2 class="font-headline font-bold text-xl text-on-surface mb-6">Order Summary</h2>
+          <div id="summary-items" class="flex flex-col gap-4 mb-6"></div>
+          <div class="flex flex-col gap-4 mb-6 border-t border-outline-variant/20 pt-6">
+            <div class="flex justify-between text-on-surface-variant"><span>Subtotal</span><span id="subtotal" class="font-bold text-on-surface">$0.00</span></div>
+            <div class="flex justify-between text-on-surface-variant"><span>Shipping</span><span id="shipping" class="font-bold text-on-surface">$0.00</span></div>
+            <div class="border-t border-outline-variant/20 pt-4 flex justify-between"><span class="font-bold text-on-surface text-lg">Total</span><span id="total" class="font-headline font-extrabold text-primary text-xl">$0.00</span></div>
+          </div>
+          <button id="pay-button" type="button" class="block w-full py-5 bg-electric-mint text-on-primary-container font-bold rounded-full text-center text-lg shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:hover:scale-100">Pay</button>
+          <a href="cart.html" class="block w-full py-4 mt-4 border-2 border-outline-variant/30 text-on-surface-variant font-bold rounded-full text-center hover:border-electric-mint hover:text-primary transition-all">Back to Cart</a>
+        </div>
+      </div>
+    </div>
 
-      document.getElementById('pay-button').addEventListener('click', async () => {
-        const statusEl = document.getElementById('payment-status');
-        statusEl.textContent = '';
+    <!-- Confirmation State -->
+    <div id="confirmation-state" class="hidden">
+      <div class="bg-white rounded-32 p-16 text-center shadow-[0_32px_64px_rgba(0,224,198,0.06)] max-w-lg mx-auto">
+        <div class="w-24 h-24 rounded-full bg-electric-mint/15 flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+        </div>
+        <h2 class="font-headline font-extrabold text-3xl text-on-surface mb-3">Order confirmed</h2>
+        <p class="text-on-surface-variant mb-2">Thanks — your goggles are on their way to the packing bench.</p>
+        <p class="text-on-surface-variant mb-8">Order reference <strong id="order-ref" class="text-on-surface"></strong><span id="confirm-email-line"></span></p>
+        <a href="shop.html" class="inline-block px-8 py-4 bg-electric-mint text-on-primary-container font-bold rounded-full shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-105 transition-transform">Continue Shopping</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-        const result = await card.tokenize();
-        if (result.status === 'OK') {
-          // result.token is the payment token — send this to your backend or Square's API
-          // For now, log it so you can test the flow
-          console.log('Payment token:', result.token);
-          statusEl.style.color = 'green';
-          statusEl.textContent = 'Payment details captured. Token: ' + result.token;
-          // TODO: send token + order details to your server to complete the charge
-        } else {
-          statusEl.textContent = result.errors.map(e => e.message).join(', ');
-        }
-      });
+<footer class="border-t border-outline-variant/30 bg-ice-white">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="flex flex-col gap-6"><img alt="Tidepop" class="h-8 w-auto object-contain self-start mb-2" src="images/brand/tidepop_logo.png"/><p class="text-on-surface-variant">Dive into clarity.</p></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Shop</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">All Products</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Support</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Company</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Our Story</a><p class="text-on-surface-variant text-sm mt-4">© 2025 Tidepop.</p></div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/tidepop-tracking.js"></script>
+<script>
+  // ── Square configuration (sandbox) ─────────────────────────────────
+  const SQUARE_APP_ID   = 'sandbox-sq0idb-fV2k7SUncrLUCzEHLo5A9Q';
+  const SQUARE_LOCATION = 'LDZG4Q7XRB5BS';
+  // ───────────────────────────────────────────────────────────────────
+
+  const FREE_SHIPPING_THRESHOLD = 50;
+  const SHIPPING_FLAT = 8.95;
+
+  const money = n => `$${n.toFixed(2)}`;
+
+  function getShipping(subtotal) {
+    return subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FLAT;
+  }
+
+  function renderSummary() {
+    const cart = getCart();
+    const emptyEl    = document.getElementById('empty-state');
+    const checkoutEl = document.getElementById('checkout-state');
+
+    if (cart.length === 0) {
+      emptyEl.classList.remove('hidden');
+      checkoutEl.classList.add('hidden');
+      return false;
+    }
+    emptyEl.classList.add('hidden');
+    checkoutEl.classList.remove('hidden');
+
+    document.getElementById('summary-items').innerHTML = cart.map(item => `
+      <div class="flex gap-4 items-center">
+        <div class="w-16 h-16 flex-shrink-0 rounded-2xl bg-surface-low flex items-center justify-center overflow-hidden">
+          <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain p-1"/>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-on-surface text-sm leading-tight truncate">${item.name}</p>
+          <p class="text-on-surface-variant text-xs">${item.variation} × ${item.qty}</p>
+        </div>
+        <p class="font-bold text-on-surface text-sm flex-shrink-0">${money(item.price * item.qty)}</p>
+      </div>
+    `).join('');
+
+    const subtotal = getCartTotal();
+    const shipping = getShipping(subtotal);
+    const total    = subtotal + shipping;
+
+    document.getElementById('subtotal').textContent = money(subtotal);
+    const shipEl = document.getElementById('shipping');
+    shipEl.textContent = shipping === 0 ? 'Free' : money(shipping);
+    shipEl.className   = shipping === 0 ? 'font-bold text-primary' : 'font-bold text-on-surface';
+    document.getElementById('total').textContent = money(total);
+    document.getElementById('pay-button').textContent = `Pay ${money(total)}`;
+    return true;
+  }
+
+  function orderRef() {
+    return 'TP-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+  }
+
+  function showConfirmation(email) {
+    document.getElementById('checkout-state').classList.add('hidden');
+    document.getElementById('order-ref').textContent = orderRef();
+    if (email) {
+      document.getElementById('confirm-email-line').textContent = ` — a confirmation is on its way to ${email}.`;
+    }
+    document.getElementById('confirmation-state').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function initSquare() {
+    const statusEl = document.getElementById('payment-status');
+    const payBtn   = document.getElementById('pay-button');
+
+    if (!window.Square) {
+      statusEl.textContent = 'Payment form failed to load. Please refresh the page.';
+      payBtn.disabled = true;
+      return;
     }
 
-    initSquare();
-  </script>
+    const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION);
+    const card = await payments.card();
+    await card.attach('#card-container');
 
-  <style>
-    #card-container { min-height: 90px; padding: 0.5rem 0; }
-    #pay-button { margin-top: 0.5rem; width: 100%; max-width: 600px; }
-  </style>
+    payBtn.addEventListener('click', async () => {
+      statusEl.textContent = '';
+
+      const form = document.getElementById('checkout-form');
+      if (!form.reportValidity()) return;
+
+      payBtn.disabled = true;
+      const originalLabel = payBtn.textContent;
+      payBtn.textContent = 'Processing…';
+
+      try {
+        const result = await card.tokenize();
+        if (result.status === 'OK') {
+          const email = form.email.value.trim().toLowerCase();
+
+          // Fire checkout tracking (Supabase + Klaviyo "Started Checkout")
+          window.TidepopCart?.checkout(email);
+
+          // Clear the display cart
+          localStorage.setItem('tidepop-cart', '[]');
+          updateCartCount();
+
+          // result.token is the payment token.
+          // TODO: send token + order details to a server-side function to complete the charge
+          console.log('Payment token:', result.token);
+
+          showConfirmation(email);
+        } else {
+          statusEl.textContent = (result.errors || []).map(e => e.message).join(', ') || 'Payment failed. Please check your card details.';
+          payBtn.disabled = false;
+          payBtn.textContent = originalLabel;
+        }
+      } catch (err) {
+        statusEl.textContent = 'Something went wrong. Please try again.';
+        payBtn.disabled = false;
+        payBtn.textContent = originalLabel;
+      }
+    });
+  }
+
+  if (renderSummary()) initSquare();
+</script>
 </body>
 </html>

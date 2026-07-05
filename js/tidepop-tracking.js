@@ -75,8 +75,12 @@
   }
 
   function updateNavBadge() {
-    const cart  = getStoredCart();
-    const count = cart.reduce((sum, i) => sum + (i.quantity || 1), 0);
+    // Badge reflects the display cart (cart.js), not the tracking store —
+    // the two can drift and the display cart is what the customer sees.
+    let displayCart;
+    try { displayCart = JSON.parse(localStorage.getItem('tidepop-cart') || '[]'); }
+    catch { displayCart = []; }
+    const count = displayCart.reduce((sum, i) => sum + (i.qty || 1), 0);
     // Support both badge styles used across site pages
     const badge = document.getElementById('cart-badge');
     const span  = document.getElementById('cart-count');
