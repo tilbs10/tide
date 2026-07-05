@@ -180,7 +180,20 @@
       // Clear cart
       saveCart([]);
     },
+
+    // Called after a successful server-side payment. The create-payment
+    // function records the checkout event and Klaviyo order itself, so this
+    // only tidies up client state — no track-cart call (would double-fire).
+    orderPlaced: function (email) {
+      clearAbandon();
+      if (email) localStorage.setItem('tp_email', email.toLowerCase().trim());
+      saveCart([]);
+    },
   };
+
+  // Expose the edge caller + session for pages that hit other functions
+  // (checkout.html → create-payment) without duplicating keys.
+  window.Tidepop = { callEdge, sessionId: SESSION_ID };
 
   // ── Page view tracking ────────────────────────────────────────────────────
 

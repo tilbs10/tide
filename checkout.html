@@ -231,13 +231,9 @@
     return true;
   }
 
-  function orderRef() {
-    return 'TP-' + Math.random().toString(36).slice(2, 8).toUpperCase();
-  }
-
-  function showConfirmation(email) {
+  function showConfirmation(email, ref) {
     document.getElementById('checkout-state').classList.add('hidden');
-    document.getElementById('order-ref').textContent = orderRef();
+    document.getElementById('order-ref').textContent = ref;
     if (email) {
       document.getElementById('confirm-email-line').textContent = ` — a confirmation is on its way to ${email}.`;
     }
@@ -274,18 +270,36 @@
         if (result.status === 'OK') {
           const email = form.email.value.trim().toLowerCase();
 
-          // Fire checkout tracking (Supabase + Klaviyo "Started Checkout")
-          window.TidepopCart?.checkout(email);
+          // Charge server-side via the create-payment edge function.
+          // Prices are re-verified there — only ids and quantities are sent.
+          const response = await window.Tidepop.callEdge('create-payment', {
+            source_id: result.token,
+            idempotency_key: crypto.randomUUID(),
+            session_id: window.Tidepop.sessionId,
+            email,
+            name: form.name.value.trim(),
+            address: {
+              street:   form.address.value.trim(),
+              suburb:   form.suburb.value.trim(),
+              state:    form.state.value,
+              postcode: form.postcode.value.trim(),
+            },
+            items: getCart().map(i => ({ id: i.id, qty: i.qty })),
+          });
 
-          // Clear the display cart
+          if (!response?.success) {
+            statusEl.textContent = response?.error || 'Payment could not be completed. You have not been charged — please try again.';
+            payBtn.disabled = false;
+            payBtn.textContent = originalLabel;
+            return;
+          }
+
+          // Payment done — tidy client state (tracking store, abandon timer)
+          window.TidepopCart?.orderPlaced(email);
           localStorage.setItem('tidepop-cart', '[]');
           updateCartCount();
 
-          // result.token is the payment token.
-          // TODO: send token + order details to a server-side function to complete the charge
-          console.log('Payment token:', result.token);
-
-          showConfirmation(email);
+          showConfirmation(email, response.order_ref);
         } else {
           statusEl.textContent = (result.errors || []).map(e => e.message).join(', ') || 'Payment failed. Please check your card details.';
           payBtn.disabled = false;
