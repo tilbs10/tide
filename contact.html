@@ -1,38 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact — Tidepop</title>
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { "electric-mint":"#00E0C6","punchy-coral":"#FF7A5C","vivid-lavender":"#7C5CFF","primary":"#006b5e","on-primary-container":"#005e52","surface-low":"#f5f2ff","on-surface":"#1a1a2e","on-surface-variant":"#3b4a46","outline-variant":"#bacac5","ice-white":"#F9FCFB" },
+        borderRadius: { "32":"32px" },
+        fontFamily: { headline:["'Nunito Sans'","sans-serif"], body:["'Hanken Grotesk'","sans-serif"] }
+      }}
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; display:inline-block; vertical-align:middle; }
+    .glass-header { backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    body { font-family:'Hanken Grotesk',sans-serif; background-color:#F9FCFB; }
+    .tp-input { width:100%; border-radius:16px; border-color:rgba(186,202,197,0.5); background:#fff; padding:0.85rem 1rem; font-size:0.95rem; }
+    .tp-input:focus { border-color:#00E0C6; --tw-ring-color:#00E0C6; }
+  </style>
 </head>
-<body>
+<body class="text-on-surface overflow-x-hidden">
 
-  <header>
-    <a href="index.html"><img src="images/brand/tidepop_logo.png" alt="Tidepop" class="logo" /></a>
-    <nav>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-    </nav>
-  </header>
+<!-- Nav -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-4 mx-4 lg:mx-auto max-w-[1280px] bg-white/70 glass-header border border-white/20 shadow-[0_32px_64px_rgba(0,224,198,0.08)]">
+  <a href="index.html"><img alt="Tidepop" class="h-20 w-auto object-contain rounded-2xl" src="images/brand/tidepop_logo.png"/></a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Shop</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Kids</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="shop.html">Performance</a>
+    <a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="about.html">Our Story</a>
+  </nav>
+  <div class="flex items-center gap-2">
+    <a href="cart.html" class="relative p-2 text-primary hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-punchy-coral text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </a>
+  </div>
+</header>
 
-  <main class="content-page">
-    <h1>Contact Us</h1>
-    <form id="contact-form">
-      <label>Name <input type="text" name="name" required /></label>
-      <label>Email <input type="email" name="email" required /></label>
-      <label>Message <textarea name="message" rows="5" required></textarea></label>
-      <button type="submit" class="btn">Send</button>
-    </form>
-  </main>
+<main class="mt-32 pb-[120px]">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 pt-8 pb-4">
+    <p class="text-sm text-on-surface-variant">
+      <a href="index.html" class="hover:text-primary transition-colors">Home</a><span class="mx-2">›</span>
+      <span class="text-on-surface font-medium">Contact</span>
+    </p>
+  </div>
 
-  <footer>
-    <p>&copy; 2026 Tidepop. All rights reserved.</p>
-  </footer>
+  <section class="max-w-[1280px] mx-auto px-5 md:px-16 py-6">
+    <h1 class="font-headline font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-on-surface mb-3">Say hello</h1>
+    <p class="text-on-surface-variant text-lg mb-10 max-w-xl">Fit questions, order help, or just a good story from the pool — we read everything and reply within a couple of days.</p>
 
-  <script src="js/cart.js"></script>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+      <!-- Form -->
+      <div class="lg:col-span-2 bg-white rounded-32 p-8 md:p-10 shadow-[0_32px_64px_rgba(0,224,198,0.06)]">
+        <form id="contact-form" class="flex flex-col gap-5">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Name</span>
+              <input class="tp-input" type="text" name="name" autocomplete="name" required/>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Email</span>
+              <input class="tp-input" type="email" name="email" autocomplete="email" required/>
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">What's it about?</span>
+            <select class="tp-input" name="topic">
+              <option>Order help</option>
+              <option>Fit &amp; sizing</option>
+              <option>Returns</option>
+              <option>Wholesale &amp; retail</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-on-surface-variant mb-1.5 block">Message</span>
+            <textarea class="tp-input" name="message" rows="6" required></textarea>
+          </label>
+          <div>
+            <button type="submit" class="px-10 py-4 bg-electric-mint text-on-primary-container font-bold rounded-full shadow-[0_16px_32px_rgba(0,224,198,0.2)] hover:scale-105 transition-transform">Send message</button>
+            <p class="text-xs text-on-surface-variant mt-3">Opens your email app with the message ready to go.</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Direct contact -->
+      <div class="flex flex-col gap-4">
+        <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.06)]">
+          <div class="w-12 h-12 rounded-full bg-electric-mint/15 flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-primary">mail</span>
+          </div>
+          <p class="font-headline font-bold text-on-surface mb-1">Email us</p>
+          <a href="mailto:hello@tidepop.com.au" class="text-primary font-medium hover:underline underline-offset-2 break-all">hello@tidepop.com.au</a>
+          <p class="text-on-surface-variant text-sm mt-2">We aim to reply within two business days.</p>
+        </div>
+        <div class="bg-white rounded-32 p-8 shadow-[0_32px_64px_rgba(0,224,198,0.06)]">
+          <div class="w-12 h-12 rounded-full bg-punchy-coral/10 flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-punchy-coral">storefront</span>
+          </div>
+          <p class="font-headline font-bold text-on-surface mb-1">Find us in the wild</p>
+          <p class="text-on-surface-variant text-sm">Tidepop goggles are stocked in retail locations across Queensland. Ask your local swim or surf shop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-outline-variant/30 bg-ice-white">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="flex flex-col gap-6"><img alt="Tidepop" class="h-8 w-auto object-contain self-start mb-2" src="images/brand/tidepop_logo.png"/><p class="text-on-surface-variant">Dive into clarity.</p></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Shop</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="shop.html">All Products</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Support</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a></div>
+    <div class="flex flex-col gap-4"><p class="text-xs font-bold tracking-widest uppercase text-primary">Company</p><a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Our Story</a><p class="text-on-surface-variant text-sm mt-4">© 2025 Tidepop.</p></div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/tidepop-tracking.js"></script>
+<script>
+  // No contact backend yet — compose the message in the visitor's email app.
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const f = e.target;
+    const subject = `${f.topic.value} — website enquiry from ${f.name.value.trim()}`;
+    const body = `${f.message.value.trim()}\n\n— ${f.name.value.trim()} (${f.email.value.trim()})`;
+    window.location.href = `mailto:hello@tidepop.com.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
 </body>
 </html>
