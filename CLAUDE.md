@@ -74,7 +74,8 @@ tidepop/
 ├── contact.html        Contact
 ├── css/
 │   ├── reset.css       Browser normalisation
-│   └── style.css       All site styles
+│   ├── style.css       Styles for the older pages (checkout, contact, product)
+│   └── tailwind.css    COMPILED Tailwind for the main pages — do not edit by hand
 ├── js/
 │   ├── cart.js         Cart logic
 │   └── main.js         Product rendering
@@ -84,6 +85,18 @@ tidepop/
 └── data/
     └── products.json   Product catalogue (source of truth)
 ```
+
+---
+
+## Gotchas
+
+- `css/tailwind.css` is a compiled file. If you add a Tailwind class to any page that
+  isn't already used somewhere on the site, you must regenerate it (Tailwind v3 CLI with
+  the forms plugin; theme tokens are in the compiled file's source config — electric-mint,
+  punchy-coral, primary, rounded-32, font-headline, etc.). If a new class has no visible
+  effect, this is why.
+- PowerShell 5.1 `Get-Content` mangles the UTF-8 in these files (em-dashes become â€").
+  Always read/write them with `[IO.File]::ReadAllText/WriteAllText` or dedicated file tools.
 
 ---
 

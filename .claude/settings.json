@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npx --yes supabase --version 2>&1)",
+      "Bash(git show *)",
+      "Read(//tmp/**)",
+      "Bash(git stash *)"
+    ]
+  }
+}
